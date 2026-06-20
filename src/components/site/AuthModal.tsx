@@ -60,7 +60,7 @@ export function AuthModal({
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
             className="relative grid w-full max-w-[940px] overflow-hidden rounded-[28px] border border-white/10 bg-ink shadow-[0_60px_120px_-40px_rgba(0,0,0,0.8)] md:grid-cols-[1.05fr_1fr]"
           >
-            {/* Left — editorial aside */}
+            {/* Left - editorial aside */}
             <div className="relative hidden flex-col justify-between overflow-hidden bg-gold p-10 text-ink md:flex">
               <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-white/30 blur-3xl" />
               <div className="relative">
@@ -78,7 +78,7 @@ export function AuthModal({
                 <p className="relative mt-6 max-w-[280px] text-sm text-ink/70">
                   {isSignup
                     ? "Three minutes to verify. A lifetime of patient, editorial investing."
-                    : "Pick up where you left off — your portfolio has been waiting."}
+                    : "Pick up where you left off - your portfolio has been waiting."}
                 </p>
               </div>
               <div className="relative font-mono text-[10px] uppercase tracking-[0.25em] text-ink/60">
@@ -86,7 +86,7 @@ export function AuthModal({
               </div>
             </div>
 
-            {/* Right — form */}
+            {/* Right - form */}
             <div className="relative p-7 sm:p-10">
               <button
                 aria-label="Close modal"

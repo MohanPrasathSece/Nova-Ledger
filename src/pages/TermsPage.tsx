@@ -33,7 +33,7 @@ export default function TermsPage() {
   const [authMode, setAuthMode] = useState<AuthMode>("signin");
 
   useEffect(() => {
-    document.title = "Terms & Conditions — Nova Ledger";
+    document.title = "Terms & Conditions - Nova Ledger";
   }, []);
 
   return (
@@ -165,7 +165,7 @@ export default function TermsPage() {
               </TermSection>
 
               <TermSection id={6} title="Intellectual Property">
-                <p>All content on the Website — including but not limited to text, graphics, logos, images, audio clips, digital downloads, data compilations, and software — is the property of Nova Ledger Holdings or its content suppliers and is protected by applicable intellectual property laws.</p>
+                <p>All content on the Website - including but not limited to text, graphics, logos, images, audio clips, digital downloads, data compilations, and software - is the property of Nova Ledger Holdings or its content suppliers and is protected by applicable intellectual property laws.</p>
                 <p>You are granted a limited, non-exclusive, non-transferable licence to access and view the Website's content for personal, non-commercial purposes. This licence does not include the right to:</p>
                 <ul>
                   <li>Reproduce, distribute, or publicly display any content without prior written consent</li>

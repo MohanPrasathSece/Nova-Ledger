@@ -32,7 +32,7 @@ export default function PrivacyPage() {
   const [authMode, setAuthMode] = useState<AuthMode>("signin");
 
   useEffect(() => {
-    document.title = "Privacy Policy — Nova Ledger";
+    document.title = "Privacy Policy - Nova Ledger";
   }, []);
 
   return (
@@ -107,12 +107,12 @@ export default function PrivacyPage() {
 
                 <PolicySection id={1} title="Definitions">
                   <ul>
-                    <li><strong>Personal Data</strong> — Any information that directly or indirectly identifies a natural person.</li>
-                    <li><strong>Processing</strong> — Any operation performed on personal data, including collection, storage, use, and deletion.</li>
-                    <li><strong>Data Controller</strong> — Nova Ledger Holdings, the entity that determines the purposes and means of processing your personal data.</li>
-                    <li><strong>Data Processor</strong> — Third parties who process data on our behalf under our instructions.</li>
-                    <li><strong>CRM</strong> — Customer Relationship Management system used to manage leads and enquiries.</li>
-                    <li><strong>User</strong> — Any individual who accesses the Website or submits information through our forms.</li>
+                    <li><strong>Personal Data</strong> - Any information that directly or indirectly identifies a natural person.</li>
+                    <li><strong>Processing</strong> - Any operation performed on personal data, including collection, storage, use, and deletion.</li>
+                    <li><strong>Data Controller</strong> - Nova Ledger Holdings, the entity that determines the purposes and means of processing your personal data.</li>
+                    <li><strong>Data Processor</strong> - Third parties who process data on our behalf under our instructions.</li>
+                    <li><strong>CRM</strong> - Customer Relationship Management system used to manage leads and enquiries.</li>
+                    <li><strong>User</strong> - Any individual who accesses the Website or submits information through our forms.</li>
                   </ul>
                 </PolicySection>
 
@@ -122,7 +122,7 @@ export default function PrivacyPage() {
                 </PolicySection>
 
                 <PolicySection id={3} title="Information You Voluntarily Provide">
-                  <p>When you submit any form on the Website — including our enquiry forms and account registration forms — you may provide:</p>
+                  <p>When you submit any form on the Website - including our enquiry forms and account registration forms - you may provide:</p>
                   <ul>
                     <li>Full name</li>
                     <li>Email address</li>
@@ -162,10 +162,10 @@ export default function PrivacyPage() {
                 <PolicySection id={6} title="Legal Basis for Processing">
                   <p>Under the GDPR and equivalent legislation, we rely on the following legal bases for processing your personal data:</p>
                   <ul>
-                    <li><strong>Consent</strong> — Where you have given clear consent, for example by submitting a form or subscribing to communications.</li>
-                    <li><strong>Legitimate Interests</strong> — Where processing is necessary for our legitimate business interests, such as improving our services and responding to enquiries, provided these interests are not overridden by your rights.</li>
-                    <li><strong>Legal Obligation</strong> — Where processing is required to comply with applicable laws.</li>
-                    <li><strong>Contractual Necessity</strong> — Where processing is required to provide the services you have requested.</li>
+                    <li><strong>Consent</strong> - Where you have given clear consent, for example by submitting a form or subscribing to communications.</li>
+                    <li><strong>Legitimate Interests</strong> - Where processing is necessary for our legitimate business interests, such as improving our services and responding to enquiries, provided these interests are not overridden by your rights.</li>
+                    <li><strong>Legal Obligation</strong> - Where processing is required to comply with applicable laws.</li>
+                    <li><strong>Contractual Necessity</strong> - Where processing is required to provide the services you have requested.</li>
                   </ul>
                 </PolicySection>
 
@@ -192,18 +192,18 @@ export default function PrivacyPage() {
                   <p>All CRM submissions are made via secure server-side API calls. Authentication tokens are never exposed to the browser or client-side code.</p>
                   <p>We also use the following service providers who may process personal data on our behalf:</p>
                   <ul>
-                    <li><strong>Vercel</strong> — Hosting, serverless functions, and Blob Storage for session management</li>
-                    <li><strong>Google Fonts</strong> — Typography delivery (may log request metadata)</li>
+                    <li><strong>Vercel</strong> - Hosting, serverless functions, and Blob Storage for session management</li>
+                    <li><strong>Google Fonts</strong> - Typography delivery (may log request metadata)</li>
                   </ul>
                   <p>All third-party processors are bound by data processing agreements requiring them to handle your data in accordance with applicable law.</p>
                 </PolicySection>
 
                 <PolicySection id={9} title="Cookies">
-                  <p>Our Website uses cookies — small text files stored on your device — to enhance your experience and collect analytics data. The types of cookies we use include:</p>
+                  <p>Our Website uses cookies - small text files stored on your device - to enhance your experience and collect analytics data. The types of cookies we use include:</p>
                   <ul>
-                    <li><strong>Strictly Necessary Cookies</strong> — Essential for the Website to function. These cannot be disabled.</li>
-                    <li><strong>Analytics Cookies</strong> — Help us understand how visitors use the Website. We may use aggregate, anonymised data to improve our service.</li>
-                    <li><strong>Preference Cookies</strong> — Remember your choices and settings across visits.</li>
+                    <li><strong>Strictly Necessary Cookies</strong> - Essential for the Website to function. These cannot be disabled.</li>
+                    <li><strong>Analytics Cookies</strong> - Help us understand how visitors use the Website. We may use aggregate, anonymised data to improve our service.</li>
+                    <li><strong>Preference Cookies</strong> - Remember your choices and settings across visits.</li>
                   </ul>
                   <p>You can control cookie preferences through your browser settings. Note that disabling cookies may affect the functionality of some parts of the Website.</p>
                 </PolicySection>
@@ -211,9 +211,9 @@ export default function PrivacyPage() {
                 <PolicySection id={10} title="Tracking Technologies">
                   <p>In addition to cookies, we may use:</p>
                   <ul>
-                    <li><strong>Local Storage</strong> — Used to store your authentication session token locally on your device. This data remains on your device and is not transmitted to any server other than our own.</li>
-                    <li><strong>Session Storage</strong> — Temporary browser storage cleared when your session ends.</li>
-                    <li><strong>Web Beacons</strong> — Small transparent images that help us track email open rates and Website visits in our communications.</li>
+                    <li><strong>Local Storage</strong> - Used to store your authentication session token locally on your device. This data remains on your device and is not transmitted to any server other than our own.</li>
+                    <li><strong>Session Storage</strong> - Temporary browser storage cleared when your session ends.</li>
+                    <li><strong>Web Beacons</strong> - Small transparent images that help us track email open rates and Website visits in our communications.</li>
                   </ul>
                 </PolicySection>
 
@@ -232,10 +232,10 @@ export default function PrivacyPage() {
                 <PolicySection id={12} title="Data Retention">
                   <p>We retain personal data for as long as necessary to fulfil the purposes for which it was collected, including satisfying legal, regulatory, and reporting requirements:</p>
                   <ul>
-                    <li><strong>Enquiry data</strong> — Retained in our CRM for up to 3 years from the date of submission</li>
-                    <li><strong>Authentication session tokens</strong> — Expire after 30 days from creation</li>
-                    <li><strong>Analytics data</strong> — Retained in anonymised, aggregate form for up to 24 months</li>
-                    <li><strong>Legal records</strong> — Retained for the minimum period required by applicable law</li>
+                    <li><strong>Enquiry data</strong> - Retained in our CRM for up to 3 years from the date of submission</li>
+                    <li><strong>Authentication session tokens</strong> - Expire after 30 days from creation</li>
+                    <li><strong>Analytics data</strong> - Retained in anonymised, aggregate form for up to 24 months</li>
+                    <li><strong>Legal records</strong> - Retained for the minimum period required by applicable law</li>
                   </ul>
                   <p>Upon expiry or upon a valid erasure request, data is securely deleted or anonymised.</p>
                 </PolicySection>
@@ -249,13 +249,13 @@ export default function PrivacyPage() {
                 <PolicySection id={14} title="Your Rights">
                   <p>Depending on your jurisdiction, you may have the following rights regarding your personal data:</p>
                   <ul>
-                    <li><strong>Right of Access</strong> — Request a copy of the personal data we hold about you</li>
-                    <li><strong>Right to Rectification</strong> — Request correction of inaccurate or incomplete data</li>
-                    <li><strong>Right to Erasure</strong> — Request deletion of your personal data ("right to be forgotten")</li>
-                    <li><strong>Right to Restriction</strong> — Request that we limit how we process your data</li>
-                    <li><strong>Right to Data Portability</strong> — Receive your data in a structured, machine-readable format</li>
-                    <li><strong>Right to Object</strong> — Object to processing based on legitimate interests or for direct marketing</li>
-                    <li><strong>Right to Withdraw Consent</strong> — Where processing is based on consent, withdraw it at any time</li>
+                    <li><strong>Right of Access</strong> - Request a copy of the personal data we hold about you</li>
+                    <li><strong>Right to Rectification</strong> - Request correction of inaccurate or incomplete data</li>
+                    <li><strong>Right to Erasure</strong> - Request deletion of your personal data ("right to be forgotten")</li>
+                    <li><strong>Right to Restriction</strong> - Request that we limit how we process your data</li>
+                    <li><strong>Right to Data Portability</strong> - Receive your data in a structured, machine-readable format</li>
+                    <li><strong>Right to Object</strong> - Object to processing based on legitimate interests or for direct marketing</li>
+                    <li><strong>Right to Withdraw Consent</strong> - Where processing is based on consent, withdraw it at any time</li>
                   </ul>
                   <p>To exercise any of these rights, contact us at privacy@nova-ledger.io. We will respond within 30 days.</p>
                 </PolicySection>

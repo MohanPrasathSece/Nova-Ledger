@@ -27,7 +27,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { AuthModal, type AuthMode } from "@/components/site/AuthModal";
 
 /* ======================================================
-   LEARN PAGE — Premium Educational Crypto Experience
+   LEARN PAGE - Premium Educational Crypto Experience
    ====================================================== */
 
 const TABS = [
@@ -87,7 +87,7 @@ export default function LearnPage() {
             <span className="h-3 w-3 rounded-full bg-yellow-500/70" />
             <span className="h-3 w-3 rounded-full bg-green-500/70" />
             <span className="ml-4 font-mono text-[10px] uppercase tracking-[0.2em] text-white/30">
-              nova-ledger://learn — educational content
+              nova-ledger://learn - educational content
             </span>
           </div>
           {/* Tab bar */}
@@ -356,7 +356,7 @@ function SectionWrap({ children, className = "" }: { children: React.ReactNode; 
 function SectionHeader({ num, label, title, sub }: { num: string; label: string; title: React.ReactNode; sub?: string }) {
   return (
     <Reveal>
-      <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-gold">{num} — {label}</span>
+      <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-gold">{num} - {label}</span>
       <h2 className="font-display mt-6 text-5xl font-light leading-[1.02] tracking-tight sm:text-6xl">{title}</h2>
       {sub && <p className="mt-6 max-w-2xl text-white/60">{sub}</p>}
     </Reveal>
@@ -387,7 +387,7 @@ function IntroCrypto() {
           <EduCard
             icon={Lock}
             title="Cryptographic Security"
-            body="Every transaction is secured by advanced cryptography — public and private keys that make forgery mathematically impossible."
+            body="Every transaction is secured by advanced cryptography - public and private keys that make forgery mathematically impossible."
           />
         </Reveal>
         <Reveal delay={0.2}>
@@ -409,7 +409,7 @@ function IntroCrypto() {
                   { year: "2008", event: "Satoshi Nakamoto publishes the Bitcoin whitepaper." },
                   { year: "2009", event: "The first Bitcoin block (Genesis Block) is mined." },
                   { year: "2015", event: "Ethereum launches, introducing smart contracts." },
-                  { year: "2020", event: "DeFi summer — $10B locked in decentralised protocols." },
+                  { year: "2020", event: "DeFi summer - $10B locked in decentralised protocols." },
                   { year: "2024", event: "Bitcoin spot ETFs approved, mainstream adoption accelerates." },
                 ].map((item) => (
                   <div key={item.year} className="flex items-start gap-4">
@@ -425,10 +425,10 @@ function IntroCrypto() {
               <div className="mt-8 space-y-4">
                 {[
                   { term: "Wallet", def: "Software that stores your private keys and lets you manage your digital assets." },
-                  { term: "Private Key", def: "A secret number that proves ownership of your cryptocurrency — never share it." },
+                  { term: "Private Key", def: "A secret number that proves ownership of your cryptocurrency - never share it." },
                   { term: "Transaction", def: "A digitally signed transfer of value recorded permanently on the blockchain." },
                   { term: "Mining", def: "The process of validating transactions and adding them to the blockchain in exchange for rewards." },
-                  { term: "Halving", def: "A scheduled event that cuts Bitcoin's new supply in half — historically a bullish catalyst." },
+                  { term: "Halving", def: "A scheduled event that cuts Bitcoin's new supply in half - historically a bullish catalyst." },
                 ].map((item) => (
                   <div key={item.term} className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-4">
                     <div className="font-display text-gold">{item.term}</div>
@@ -490,7 +490,7 @@ function BlockchainSection() {
             <EduCard
               icon={Zap}
               title="Smart Contracts"
-              body="Self-executing code on the blockchain. When conditions are met, the contract runs automatically — no lawyers, no middlemen."
+              body="Self-executing code on the blockchain. When conditions are met, the contract runs automatically - no lawyers, no middlemen."
             />
             <EduCard
               icon={Globe}
@@ -512,13 +512,13 @@ function InvestingSection() {
         num="03"
         label="Digital Asset Investing"
         title={<>Invest with<span className="italic text-gold"> conviction.</span></>}
-        sub="Digital asset investing rewards patience, research, and disciplined position sizing. The market is volatile — your framework must not be."
+        sub="Digital asset investing rewards patience, research, and disciplined position sizing. The market is volatile - your framework must not be."
       />
 
       <div className="mt-16 grid gap-6 lg:grid-cols-3">
         {[
           { icon: TrendingUp, accent: true, title: "HODLing", body: "Long-term holding through volatility. Historically the best strategy for Bitcoin and Ethereum over 4+ year cycles." },
-          { icon: BarChart3, title: "Dollar-Cost Averaging", body: "Invest a fixed amount on a regular schedule regardless of price — eliminates the stress of timing the market." },
+          { icon: BarChart3, title: "Dollar-Cost Averaging", body: "Invest a fixed amount on a regular schedule regardless of price - eliminates the stress of timing the market." },
           { icon: PieChart, title: "Portfolio Allocation", body: "Most serious investors keep crypto between 5–20% of total net worth, with BTC and ETH forming the core." },
           { icon: Activity, title: "Market Cycles", body: "Crypto follows 4-year cycles correlated with Bitcoin halvings. Understanding cycles prevents panic selling." },
           { icon: Shield, title: "Due Diligence", body: "Research tokenomics, team, use case, and on-chain metrics before allocating. Most altcoins fail." },
@@ -625,14 +625,14 @@ function AISection() {
         num="05"
         label="AI & Market Analysis"
         title={<>Machine intelligence,<span className="italic text-gold"> human judgment.</span></>}
-        sub="AI tools augment analysis — pattern recognition, sentiment parsing, anomaly detection — but cannot replace disciplined human decision-making."
+        sub="AI tools augment analysis - pattern recognition, sentiment parsing, anomaly detection - but cannot replace disciplined human decision-making."
       />
 
       <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {[
-          { icon: Brain, accent: true, title: "Sentiment Analysis", body: "NLP models parse millions of social posts and news articles to gauge market sentiment in real time — fear, greed, uncertainty." },
-          { icon: Activity, title: "On-Chain Analytics", body: "AI identifies whale movements, exchange flows, and miner behaviour from raw blockchain data — signals invisible to chart readers." },
-          { icon: BarChart3, title: "Pattern Recognition", body: "Machine learning models trained on decades of price data identify chart patterns with statistical edges — not guarantees." },
+          { icon: Brain, accent: true, title: "Sentiment Analysis", body: "NLP models parse millions of social posts and news articles to gauge market sentiment in real time - fear, greed, uncertainty." },
+          { icon: Activity, title: "On-Chain Analytics", body: "AI identifies whale movements, exchange flows, and miner behaviour from raw blockchain data - signals invisible to chart readers." },
+          { icon: BarChart3, title: "Pattern Recognition", body: "Machine learning models trained on decades of price data identify chart patterns with statistical edges - not guarantees." },
           { icon: Zap, title: "Algorithmic Execution", body: "Smart order routing algorithms execute large positions with minimal market impact, using TWAP and VWAP strategies." },
           { icon: Globe, title: "Macro Correlations", body: "AI models track crypto's evolving correlation with risk assets, rates, and dollar strength to contextualise price action." },
           { icon: Shield, title: "Risk Modelling", body: "Portfolio-level AI stress tests your holdings against historical drawdown scenarios and generates tail-risk estimates." },
@@ -661,7 +661,7 @@ function PortfolioSection() {
         num="06"
         label="Portfolio Diversification"
         title={<>Build a portfolio<span className="italic text-gold"> that endures.</span></>}
-        sub="Diversification in crypto is not about owning 100 coins — it's about intelligent allocation across asset classes, risk profiles, and holding periods."
+        sub="Diversification in crypto is not about owning 100 coins - it's about intelligent allocation across asset classes, risk profiles, and holding periods."
       />
 
       <div className="mt-16 grid gap-8 lg:grid-cols-2">
@@ -721,7 +721,7 @@ function RiskSection() {
         num="07"
         label="Risk Management"
         title={<>Survive first,<span className="italic text-gold"> then thrive.</span></>}
-        sub="The investors who compound wealth in crypto are those who avoided catastrophic loss — not those who picked the best altcoin."
+        sub="The investors who compound wealth in crypto are those who avoided catastrophic loss - not those who picked the best altcoin."
       />
 
       <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -788,7 +788,7 @@ function TrendsSection() {
 
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {[
-            { icon: TrendingUp, accent: true, title: "Bitcoin ETF Inflows", body: "Spot ETF approval opened crypto to institutional capital. Monthly inflows now rival gold ETFs — a structural shift in demand." },
+            { icon: TrendingUp, accent: true, title: "Bitcoin ETF Inflows", body: "Spot ETF approval opened crypto to institutional capital. Monthly inflows now rival gold ETFs - a structural shift in demand." },
             { icon: Globe, title: "Stablecoin Expansion", body: "USDT and USDC circulation exceeds $150B. Stablecoins are becoming critical global payment infrastructure, driving regulatory focus." },
             { icon: Zap, title: "Layer 2 Adoption", body: "Ethereum L2s process more transactions than the mainchain at a fraction of the cost. This scalability is attracting developers and users." },
           ].map((c, i) => (
@@ -815,10 +815,10 @@ function SecuritySection() {
 
       <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {[
-          { icon: Lock, accent: true, title: "Hardware Wallets", body: "Ledger, Trezor, Coldcard — for any holding worth protecting, a hardware wallet is non-negotiable. Private keys never touch the internet." },
+          { icon: Lock, accent: true, title: "Hardware Wallets", body: "Ledger, Trezor, Coldcard - for any holding worth protecting, a hardware wallet is non-negotiable. Private keys never touch the internet." },
           { icon: Shield, title: "Seed Phrase Security", body: "Your 12/24-word seed phrase is the master key. Store it on metal, in multiple physical locations, never digitally." },
           { icon: Zap, title: "Multi-Signature", body: "Require multiple keys to authorise transactions. 2-of-3 or 3-of-5 multisig eliminates single points of failure." },
-          { icon: AlertTriangle, title: "Phishing Defence", body: "Verify URLs obsessively. Bookmark official sites. Never click crypto links in emails, DMs, or ads — even from 'known' senders." },
+          { icon: AlertTriangle, title: "Phishing Defence", body: "Verify URLs obsessively. Bookmark official sites. Never click crypto links in emails, DMs, or ads - even from 'known' senders." },
           { icon: Activity, title: "Exchange Security", body: "Enable 2FA with a hardware key or authenticator app (not SMS). Whitelist withdrawal addresses. Use unique, strong passwords." },
           { icon: Globe, title: "Privacy Hygiene", body: "Use separate wallets for different activities. Don't post holdings publicly. Blockchain data is permanently public." },
         ].map((c, i) => (
@@ -834,14 +834,14 @@ function SecuritySection() {
 /* ================ SECTION: FAQ ================ */
 function FaqSection() {
   const faqs = [
-    { q: "Is cryptocurrency legal?", a: "In most jurisdictions, yes — cryptocurrency is legal to hold and trade. Regulations vary significantly by country, particularly around exchanges, taxes, and stablecoins. Always consult local regulation." },
+    { q: "Is cryptocurrency legal?", a: "In most jurisdictions, yes - cryptocurrency is legal to hold and trade. Regulations vary significantly by country, particularly around exchanges, taxes, and stablecoins. Always consult local regulation." },
     { q: "How are crypto gains taxed?", a: "Most jurisdictions treat crypto as property for tax purposes. Sales and swaps trigger capital gains events. Mining and staking rewards are typically income. Record all transactions." },
     { q: "What is the safest way to store crypto?", a: "A hardware wallet (cold storage) is the gold standard. For large amounts, consider multi-signature schemes with keys distributed across locations." },
     { q: "How much should I invest in crypto?", a: "A widely cited range is 1–10% of investable assets for conservative investors, up to 20% for those with high risk tolerance and long time horizons. Never invest more than you can afford to lose entirely." },
-    { q: "What's the difference between Bitcoin and Ethereum?", a: "Bitcoin is digital gold — a store of value with a fixed 21M supply. Ethereum is programmable money — a decentralised computing platform that powers DeFi, NFTs, and smart contracts." },
+    { q: "What's the difference between Bitcoin and Ethereum?", a: "Bitcoin is digital gold - a store of value with a fixed 21M supply. Ethereum is programmable money - a decentralised computing platform that powers DeFi, NFTs, and smart contracts." },
     { q: "Is DeFi safe?", a: "DeFi carries significant risks: smart contract exploits, oracle manipulation, rug pulls, and regulatory uncertainty. Only use audited protocols, diversify exposure, and never deposit more than you can afford to lose." },
     { q: "What is a crypto ETF?", a: "An exchange-traded fund that holds crypto assets or futures, traded on traditional stock exchanges. Bitcoin spot ETFs launched in the US in 2024, enabling exposure without self-custody." },
-    { q: "How do I evaluate an altcoin?", a: "Assess: token utility and economics, team credentials and track record, on-chain adoption metrics, competitive landscape, liquidity, and regulatory risk. Most altcoins fail — apply extreme scrutiny." },
+    { q: "How do I evaluate an altcoin?", a: "Assess: token utility and economics, team credentials and track record, on-chain adoption metrics, competitive landscape, liquidity, and regulatory risk. Most altcoins fail - apply extreme scrutiny." },
   ];
   const [open, setOpen] = useState<number | null>(0);
 

@@ -110,7 +110,7 @@ function Hero({ onSignUp }: { onSignUp: () => void }) {
             transition={{ duration: 0.9, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
             className="mx-auto mt-8 max-w-xl text-balance text-base text-white/60 sm:text-lg"
           >
-            Nova Ledger is the editorial home for serious digital asset investors —
+            Nova Ledger is the editorial home for serious digital asset investors -
             a wallet, a desk, and a vault, composed with the precision of a private bank.
           </motion.p>
 
@@ -214,7 +214,7 @@ function FeatureGrid() {
         <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
           <div className="lg:sticky lg:top-32 lg:self-start">
             <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-ink/50">
-              02 — The Platform
+              02 - The Platform
             </span>
             <h2 className="font-display mt-6 text-5xl font-light leading-[1.02] tracking-tight sm:text-7xl">
               Everything an investor needs.
@@ -251,7 +251,7 @@ function FeatureGrid() {
 
 const features = [
   { icon: Wallet, title: "Self-custody wallet", body: "Multi-chain wallet with hardware-grade key isolation and one-tap recovery." },
-  { icon: LineChart, title: "Portfolio desk", body: "Allocation, performance, attribution and tax lots — all in one editorial view." },
+  { icon: LineChart, title: "Portfolio desk", body: "Allocation, performance, attribution and tax lots - all in one editorial view." },
   { icon: Coins, title: "Spot trading", body: "Deep liquidity, smart routing and institutional execution from a single window." },
   { icon: Sparkles, title: "Yield & staking", body: "Native staking on ETH, SOL, ATOM and DOT with transparent validator sets." },
   { icon: ShieldCheck, title: "Vault custody", body: "$500M insurance pool and SOC 2 Type II infrastructure for long-term holdings." },
@@ -266,7 +266,7 @@ function Showcase() {
         <Reveal>
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <div>
-              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-gold">03 — The Desk</span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-gold">03 - The Desk</span>
               <h3 className="font-display mt-6 text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
                 A trading desk you'd build for yourself.
               </h3>
@@ -296,7 +296,7 @@ function Showcase() {
         <Reveal>
           <div className="grid items-stretch gap-6 lg:grid-cols-3">
             <div className="rounded-[28px] bg-gold p-10 text-ink lg:col-span-2">
-              <span className="font-mono text-[11px] uppercase tracking-[0.25em]">04 — The Vault</span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.25em]">04 - The Vault</span>
               <h3 className="font-display mt-6 text-5xl font-light leading-[1.05] tracking-tight sm:text-7xl">
                 Hold for the long arc of the cycle.
               </h3>
@@ -335,13 +335,13 @@ function Showcase() {
               <img src={portfolioArt} alt="Editorial portfolio art" loading="lazy" width={1280} height={960} className="h-full w-full object-cover" />
             </motion.div>
             <div className="order-1 lg:order-2">
-              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-white/40">05 — The Portfolio</span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-white/40">05 - The Portfolio</span>
               <h3 className="font-display mt-6 text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
                 A quiet, weekly read on your wealth.
               </h3>
               <p className="mt-6 max-w-md text-white/60">
                 Performance, attribution and tax lots, written like a letter from your
-                portfolio manager — not a bloated dashboard.
+                portfolio manager - not a bloated dashboard.
               </p>
             </div>
           </div>
@@ -367,7 +367,7 @@ function Markets() {
         <Reveal>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
-              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-ink/50">06 — Markets</span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-ink/50">06 - Markets</span>
               <h2 className="font-display mt-6 text-5xl font-light leading-[1.02] tracking-tight sm:text-7xl">
                 Live tape, written in gold.
               </h2>
@@ -439,12 +439,12 @@ function Security() {
         </Reveal>
 
         <div>
-          <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-gold">07 — Security</span>
+          <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-gold">07 - Security</span>
           <h2 className="font-display mt-6 text-5xl font-light leading-[1.02] tracking-tight sm:text-7xl">
             Quiet, patient, paranoid.
           </h2>
           <p className="mt-6 max-w-md text-white/60">
-            We treat your keys the way private banks treat gold — multi-party computation,
+            We treat your keys the way private banks treat gold - multi-party computation,
             geographically distributed vaults, and never a single point of failure.
           </p>
           <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -487,7 +487,7 @@ function Journal() {
         <Reveal>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
-              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-ink/50">08 — Journal</span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-ink/50">08 - Journal</span>
               <h2 className="font-display mt-6 text-5xl font-light leading-[1.02] tracking-tight sm:text-7xl">
                 Field notes from the desk.
               </h2>
@@ -543,13 +543,13 @@ function Testimonials() {
   const items = [
     { quote: "The first crypto product that feels designed for adults. Nova Ledger became my default for the long-term book.", author: "Marin Kovač", role: "Family Office, Zürich" },
     { quote: "Editorial in a category that desperately needs editing. The vault and desk are best-in-class.", author: "Sasha Lindqvist", role: "Allocator, Stockholm" },
-    { quote: "It's a quiet competence — exactly what I want when seven figures are on the line.", author: "Daniel Okafor", role: "Founder, Lagos" },
+    { quote: "It's a quiet competence - exactly what I want when seven figures are on the line.", author: "Daniel Okafor", role: "Founder, Lagos" },
   ];
   return (
     <section className="relative bg-ink py-32">
       <div className="mx-auto max-w-[1400px] px-6">
         <Reveal>
-          <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-white/40">09 — Readers</span>
+          <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-white/40">09 - Readers</span>
           <h2 className="font-display mt-6 max-w-3xl text-5xl font-light leading-[1.02] tracking-tight sm:text-7xl">
             Trusted by investors who notice the details.
           </h2>
@@ -595,7 +595,7 @@ function Faq() {
     <section id="faq" className="relative bg-bone py-32 text-ink">
       <div className="mx-auto grid max-w-[1400px] items-start gap-16 px-6 lg:grid-cols-[1fr_1.4fr]">
         <Reveal>
-          <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-ink/50">10 — Questions</span>
+          <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-ink/50">10 - Questions</span>
           <h2 className="font-display mt-6 text-5xl font-light leading-[1.02] tracking-tight sm:text-6xl">
             The fine print, in plain language.
           </h2>
@@ -688,7 +688,7 @@ function ContactSection() {
         <Reveal>
           <div className="grid gap-16 lg:grid-cols-[1fr_1.2fr] lg:gap-24">
             <div>
-              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-gold">11 — Contact</span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-gold">11 - Contact</span>
               <h2 className="font-display mt-6 text-5xl font-light leading-[1.02] tracking-tight sm:text-6xl">
                 Speak with our concierge desk.
               </h2>
@@ -813,7 +813,7 @@ function CTA({ onSignUp }: { onSignUp: () => void }) {
             <div className="absolute -right-20 -top-20 h-[420px] w-[420px] rounded-full bg-white/30 blur-3xl" />
             <div className="relative grid items-end gap-12 lg:grid-cols-[1.4fr_1fr]">
               <div>
-                <span className="font-mono text-[11px] uppercase tracking-[0.25em]">12 — Begin</span>
+                <span className="font-mono text-[11px] uppercase tracking-[0.25em]">12 - Begin</span>
                 <h2 className="font-display mt-6 text-5xl font-light leading-[1.02] tracking-tight sm:text-8xl">
                   Compose your <span className="italic">first position</span> in three minutes.
                 </h2>
