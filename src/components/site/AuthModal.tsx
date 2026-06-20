@@ -226,7 +226,7 @@ function SignupForm({ onClose }: { onClose: () => void }) {
       }
 
       // 2. Log user in via Vercel Blob auth
-      const loginResult = await login(email);
+      const loginResult = await login(email, "signup", name, phone);
       setSubmitting(false);
 
       if (loginResult.success) {
