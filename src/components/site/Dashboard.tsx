@@ -20,14 +20,14 @@ export function Dashboard() {
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
         <div className="flex items-center gap-3">
           <div className="h-2 w-2 rounded-full bg-gold" />
-          <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/50">Portfolio · Live</span>
+          <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/50">Portefeuille · En direct</span>
         </div>
         <div className="font-mono text-xs text-white/40">AUR · USD · 09:42 UTC</div>
       </div>
 
       <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-[1.4fr_1fr]">
         <div>
-          <div className="text-sm text-white/50">Total balance</div>
+          <div className="text-sm text-white/50">Solde total</div>
           <div className="mt-2 flex items-baseline gap-3">
             <div className="font-display text-5xl tracking-tight sm:text-6xl">$ 248,930.<span className="text-white/40">42</span></div>
             <span className="rounded-full bg-gold/15 px-2 py-1 font-mono text-xs text-gold">+12.4%</span>
@@ -66,7 +66,7 @@ export function Dashboard() {
         </div>
 
         <div className="rounded-2xl border border-white/10 bg-black/40 p-5">
-          <div className="text-xs uppercase tracking-[0.2em] text-white/40">Allocation</div>
+          <div className="text-xs uppercase tracking-[0.2em] text-white/40">Répartition</div>
           <div className="mt-4 space-y-3">
             {assets.map((a, i) => (
               <div key={a.sym}>

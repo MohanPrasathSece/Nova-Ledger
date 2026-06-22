@@ -91,7 +91,7 @@ function Hero({ onSignUp }: { onSignUp: () => void }) {
             className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.25em] text-white/70"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-gold" />
-            Issue Nº 014 · Winter 2026
+            Numéro Nº 014 · Hiver 2026
           </motion.span>
 
           <motion.h1
@@ -100,8 +100,8 @@ function Hero({ onSignUp }: { onSignUp: () => void }) {
             transition={{ duration: 1.1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="font-display mt-8 text-[clamp(2.75rem,8vw,8rem)] font-light leading-[0.95] tracking-tight text-balance"
           >
-            A new standard
-            <span className="block italic text-gold">for crypto investing.</span>
+            Un nouveau standard
+            <span className="block italic text-gold">pour l'investissement crypto.</span>
           </motion.h1>
 
           <motion.p
@@ -110,8 +110,8 @@ function Hero({ onSignUp }: { onSignUp: () => void }) {
             transition={{ duration: 0.9, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
             className="mx-auto mt-8 max-w-xl text-balance text-base text-white/60 sm:text-lg"
           >
-            Nova Ledger is the editorial home for serious digital asset investors -
-            a wallet, a desk, and a vault, composed with the precision of a private bank.
+            Nova Ledger est la maison éditoriale des investisseurs sérieux en actifs numériques -
+            un portefeuille, un bureau et un coffre, composés avec la précision d'une banque privée.
           </motion.p>
 
           <motion.div
@@ -124,14 +124,14 @@ function Hero({ onSignUp }: { onSignUp: () => void }) {
               onClick={onSignUp}
               className="group inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3.5 text-sm font-medium text-ink transition hover:scale-[1.03]"
             >
-              Open an account
+              Ouvrir un compte
               <ArrowUpRight className="size-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </button>
             <a
               href="#platform"
               className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3.5 text-sm text-white/80 transition hover:bg-white/5"
             >
-              Tour the platform
+              Découvrir la plateforme
             </a>
           </motion.div>
         </div>
@@ -151,7 +151,7 @@ function Marquee() {
     "Ethereum · 3,842.55 · +2.4%",
     "Solana · 184.30 · +5.1%",
     "AUM · $4.2B",
-    "Daily Vol · $812M",
+    "Vol. Quotidien · $812M",
     "Avalanche · 42.18 · +3.2%",
     "Chainlink · 18.92 · +1.1%",
     "Polygon · 0.94 · +0.7%",
@@ -176,10 +176,10 @@ function Marquee() {
 /* ---------------- STATS ---------------- */
 function Stats() {
   const stats = [
-    { value: 4.2, prefix: "$", suffix: "B", decimals: 1, label: "Assets under management" },
-    { value: 320000, suffix: "+", label: "Active investors" },
-    { value: 142, label: "Countries served" },
-    { value: 812, prefix: "$", suffix: "M", label: "Avg. daily volume" },
+    { value: 4.2, prefix: "$", suffix: "B", decimals: 1, label: "Actifs sous gestion" },
+    { value: 320000, suffix: "+", label: "Investisseurs actifs" },
+    { value: 142, label: "Pays desservis" },
+    { value: 812, prefix: "$", suffix: "M", label: "Volume quotidien moyen" },
   ];
   return (
     <section id="platform" className="relative bg-ink py-32">
@@ -214,15 +214,15 @@ function FeatureGrid() {
         <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
           <div className="lg:sticky lg:top-32 lg:self-start">
             <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-ink/50">
-              02 - The Platform
+              02 - La Plateforme
             </span>
             <h2 className="font-display mt-6 text-5xl font-light leading-[1.02] tracking-tight sm:text-7xl">
-              Everything an investor needs.
-              <span className="block italic text-ink/40">Nothing they don't.</span>
+              Tout ce dont un investisseur a besoin.
+              <span className="block italic text-ink/40">Rien de plus.</span>
             </h2>
             <p className="mt-6 max-w-md text-ink/60">
-              Eight precision instruments, composed into a single, editorial workspace.
-              Move between wallet, desk, and vault without losing the thread.
+              Huit instruments de précision, composés en un espace de travail éditorial unique.
+              Passez du portefeuille au bureau et au coffre sans perdre le fil.
             </p>
           </div>
 
@@ -250,12 +250,12 @@ function FeatureGrid() {
 }
 
 const features = [
-  { icon: Wallet, title: "Self-custody wallet", body: "Multi-chain wallet with hardware-grade key isolation and one-tap recovery." },
-  { icon: LineChart, title: "Portfolio desk", body: "Allocation, performance, attribution and tax lots - all in one editorial view." },
-  { icon: Coins, title: "Spot trading", body: "Deep liquidity, smart routing and institutional execution from a single window." },
-  { icon: Sparkles, title: "Yield & staking", body: "Native staking on ETH, SOL, ATOM and DOT with transparent validator sets." },
-  { icon: ShieldCheck, title: "Vault custody", body: "$500M insurance pool and SOC 2 Type II infrastructure for long-term holdings." },
-  { icon: Globe2, title: "Global access", body: "Available in 142 countries with local fiat rails and tax-aware reporting." },
+  { icon: Wallet, title: "Portefeuille en auto-garde", body: "Portefeuille multi-chaîne avec isolation des clés de niveau matériel et récupération en un clic." },
+  { icon: LineChart, title: "Bureau de portefeuille", body: "Allocation, performance, attribution et lots fiscaux - tout dans une vue éditoriale unifiée." },
+  { icon: Coins, title: "Trading au comptant", body: "Liquidité profonde, routage intelligent et exécution institutionnelle depuis une seule fenêtre." },
+  { icon: Sparkles, title: "Rendement & staking", body: "Staking natif sur ETH, SOL, ATOM et DOT avec des ensembles de validateurs transparents." },
+  { icon: ShieldCheck, title: "Coffre-fort", body: "Pool d'assurance de 500 M$ et infrastructure SOC 2 Type II pour les détentions à long terme." },
+  { icon: Globe2, title: "Accès mondial", body: "Disponible dans 142 pays avec des rails fiduciaires locaux et des rapports fiscaux adaptés." },
 ];
 
 /* ---------------- SHOWCASE ---------------- */
@@ -266,16 +266,16 @@ function Showcase() {
         <Reveal>
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <div>
-              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-gold">03 - The Desk</span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-gold">03 - Le Bureau</span>
               <h3 className="font-display mt-6 text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
-                A trading desk you'd build for yourself.
+                Un bureau de trading conçu pour vous.
               </h3>
               <p className="mt-6 max-w-md text-white/60">
-                Spot, perpetuals and options across forty venues. Smart routing finds the
-                best execution; your screen stays beautifully still.
+                Spot, perpétuels et options sur quarante plateformes. Le routage intelligent trouve la
+                meilleure exécution ; votre écran reste d'une clarté absolue.
               </p>
               <ul className="mt-8 space-y-3 text-sm text-white/70">
-                {["Aggregated liquidity from 40+ venues", "Sub-50ms routing latency", "Transparent fee schedule"].map((t) => (
+                {["Liquidité agrégée de plus de 40 plateformes", "Latence de routage inférieure à 50ms", "Grille tarifaire transparente"].map((t) => (
                   <li key={t} className="flex items-start gap-3">
                     <span className="mt-2 h-1 w-6 bg-gold" />
                     {t}
@@ -296,30 +296,30 @@ function Showcase() {
         <Reveal>
           <div className="grid items-stretch gap-6 lg:grid-cols-3">
             <div className="rounded-[28px] bg-gold p-10 text-ink lg:col-span-2">
-              <span className="font-mono text-[11px] uppercase tracking-[0.25em]">04 - The Vault</span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.25em]">04 - Le Coffre</span>
               <h3 className="font-display mt-6 text-5xl font-light leading-[1.05] tracking-tight sm:text-7xl">
-                Hold for the long arc of the cycle.
+                Tenez sur le long arc du cycle.
               </h3>
               <p className="mt-6 max-w-xl text-ink/70">
-                A cold-storage vault for conviction holdings, insured to $500M and
-                audited quarterly by Trail of Bits and Halborn.
+                Un coffre en stockage froid pour les convictions à long terme, assuré à 500 M$ et
+                audité trimestriellement par Trail of Bits et Halborn.
               </p>
               <div className="mt-10 grid grid-cols-3 gap-6 border-t border-ink/15 pt-8 font-mono text-xs uppercase tracking-[0.2em]">
-                <div><div className="text-ink/50">Insurance</div><div className="font-display mt-2 text-2xl normal-case tracking-tight">$500M</div></div>
+                <div><div className="text-ink/50">Assurance</div><div className="font-display mt-2 text-2xl normal-case tracking-tight">$500M</div></div>
                 <div><div className="text-ink/50">Audit</div><div className="font-display mt-2 text-2xl normal-case tracking-tight">SOC 2 II</div></div>
-                <div><div className="text-ink/50">Uptime</div><div className="font-display mt-2 text-2xl normal-case tracking-tight">99.99%</div></div>
+                <div><div className="text-ink/50">Disponibilité</div><div className="font-display mt-2 text-2xl normal-case tracking-tight">99.99%</div></div>
               </div>
             </div>
             <div className="rounded-[28px] border border-white/10 bg-white/[0.03] p-8">
-              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-white/40">Rewards</span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-white/40">Récompenses</span>
               <h4 className="font-display mt-6 text-3xl leading-tight">
-                Earn up to <span className="text-gold">8.4%</span> APY on staked assets.
+                Gagnez jusqu'à <span className="text-gold">8.4%</span> APY sur les actifs mis en staking.
               </h4>
               <p className="mt-4 text-sm text-white/60">
-                Native staking with transparent validators, daily compounding and no lock-up beyond the protocol minimum.
+                Staking natif avec des validateurs transparents, composition quotidienne et aucun blocage au-delà du minimum protocolaire.
               </p>
               <a href="#contact" className="mt-8 inline-flex items-center gap-2 text-sm text-gold story-link">
-                Explore staking <ArrowUpRight className="size-4" />
+                Explorer le staking <ArrowUpRight className="size-4" />
               </a>
             </div>
           </div>
@@ -335,13 +335,13 @@ function Showcase() {
               <img src={portfolioArt} alt="Editorial portfolio art" loading="lazy" width={1280} height={960} className="h-full w-full object-cover" />
             </motion.div>
             <div className="order-1 lg:order-2">
-              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-white/40">05 - The Portfolio</span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-white/40">05 - Le Portefeuille</span>
               <h3 className="font-display mt-6 text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
-                A quiet, weekly read on your wealth.
+                Une lecture hebdomadaire sur votre patrimoine.
               </h3>
               <p className="mt-6 max-w-md text-white/60">
-                Performance, attribution and tax lots, written like a letter from your
-                portfolio manager - not a bloated dashboard.
+                Performance, attribution et lots fiscaux, rédigés comme une lettre de votre
+                gestionnaire de portefeuille - pas un tableau de bord surchargé.
               </p>
             </div>
           </div>
@@ -367,12 +367,12 @@ function Markets() {
         <Reveal>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
-              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-ink/50">06 - Markets</span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-ink/50">06 - Marchés</span>
               <h2 className="font-display mt-6 text-5xl font-light leading-[1.02] tracking-tight sm:text-7xl">
-                Live tape, written in gold.
+                Le fil en direct, écrit en or.
               </h2>
             </div>
-            <a href="#contact" className="story-link text-sm">View all markets →</a>
+            <a href="#contact" className="story-link text-sm">Voir tous les marchés →</a>
           </div>
         </Reveal>
 
@@ -439,20 +439,20 @@ function Security() {
         </Reveal>
 
         <div>
-          <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-gold">07 - Security</span>
+          <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-gold">07 - Sécurité</span>
           <h2 className="font-display mt-6 text-5xl font-light leading-[1.02] tracking-tight sm:text-7xl">
-            Quiet, patient, paranoid.
+            Discret, patient, paranoïaque.
           </h2>
           <p className="mt-6 max-w-md text-white/60">
-            We treat your keys the way private banks treat gold - multi-party computation,
-            geographically distributed vaults, and never a single point of failure.
+            Nous traitons vos clés comme les banques privées traitent l'or - calcul multipartite,
+            coffres répartis géographiquement, et jamais un point de défaillance unique.
           </p>
           <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2">
             {[
-              { icon: Lock, label: "MPC key sharding across 5 jurisdictions" },
-              { icon: ShieldCheck, label: "SOC 2 Type II · ISO 27001 certified" },
-              { icon: Sparkles, label: "Quarterly third-party audits" },
-              { icon: Globe2, label: "$500M insurance through Lloyd's" },
+              { icon: Lock, label: "Fragmentation MPC des clés sur 5 juridictions" },
+              { icon: ShieldCheck, label: "SOC 2 Type II · Certifié ISO 27001" },
+              { icon: Sparkles, label: "Audits trimestriels par des tiers" },
+              { icon: Globe2, label: "Assurance de 500 M$ via Lloyd's" },
             ].map((i, idx) => (
               <Reveal key={idx} delay={idx * 0.05}>
                 <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-sm text-white/80">
@@ -471,15 +471,15 @@ function Security() {
 /* ---------------- JOURNAL ---------------- */
 function Journal() {
   const featured = {
-    cat: "Market Letter",
-    title: "The quiet accumulation: why this cycle looks different.",
-    read: "8 min read",
+    cat: "Lettre de Marché",
+    title: "L'accumulation silencieuse : pourquoi ce cycle est différent.",
+    read: "8 min de lecture",
   };
   const stories = [
-    { cat: "Education", title: "A patient investor's guide to ETH staking.", read: "6 min" },
-    { cat: "Macro", title: "Stablecoins as the new money market fund.", read: "5 min" },
-    { cat: "Research", title: "On-chain volume signals nobody is watching.", read: "9 min" },
-    { cat: "Brief", title: "What changed in Bitcoin's halving year.", read: "4 min" },
+    { cat: "Éducation", title: "Le guide de l'investisseur patient pour le staking ETH.", read: "6 min" },
+    { cat: "Macro", title: "Les stablecoins, le nouveau fonds monétaire.", read: "5 min" },
+    { cat: "Recherche", title: "Les signaux on-chain que personne ne surveille.", read: "9 min" },
+    { cat: "Bref", title: "Ce qui a changé lors de l'année du halving de Bitcoin.", read: "4 min" },
   ];
   return (
     <section id="journal" className="relative bg-bone py-32 text-ink">
@@ -489,10 +489,10 @@ function Journal() {
             <div>
               <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-ink/50">08 - Journal</span>
               <h2 className="font-display mt-6 text-5xl font-light leading-[1.02] tracking-tight sm:text-7xl">
-                Field notes from the desk.
+                Notes de terrain depuis le bureau.
               </h2>
             </div>
-            <a href="#contact" className="story-link text-sm">All issues →</a>
+            <a href="#contact" className="story-link text-sm">Tous les numéros →</a>
           </div>
         </Reveal>
 
@@ -541,17 +541,17 @@ function Journal() {
 /* ---------------- TESTIMONIALS ---------------- */
 function Testimonials() {
   const items = [
-    { quote: "The first crypto product that feels designed for adults. Nova Ledger became my default for the long-term book.", author: "Marin Kovač", role: "Family Office, Zürich" },
-    { quote: "Editorial in a category that desperately needs editing. The vault and desk are best-in-class.", author: "Sasha Lindqvist", role: "Allocator, Stockholm" },
-    { quote: "It's a quiet competence - exactly what I want when seven figures are on the line.", author: "Daniel Okafor", role: "Founder, Lagos" },
+    { quote: "Le premier produit crypto conçu pour les adultes. Nova Ledger est devenu ma référence pour le portefeuille long terme.", author: "Marin Kovač", role: "Family Office, Zürich" },
+    { quote: "Éditorial dans une catégorie qui en a désespérément besoin. Le coffre et le bureau sont au sommet de leur catégorie.", author: "Sasha Lindqvist", role: "Allocateur, Stockholm" },
+    { quote: "C'est une compétence silencieuse - exactement ce que je veux quand sept chiffres sont en jeu.", author: "Daniel Okafor", role: "Fondateur, Lagos" },
   ];
   return (
     <section className="relative bg-ink py-32">
       <div className="mx-auto max-w-[1400px] px-6">
         <Reveal>
-          <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-white/40">09 - Readers</span>
+          <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-white/40">09 - Lecteurs</span>
           <h2 className="font-display mt-6 max-w-3xl text-5xl font-light leading-[1.02] tracking-tight sm:text-7xl">
-            Trusted by investors who notice the details.
+            La confiance des investisseurs qui remarquent les détails.
           </h2>
         </Reveal>
 
@@ -584,11 +584,11 @@ function Testimonials() {
 /* ---------------- FAQ ---------------- */
 function Faq() {
   const items = [
-    { q: "How do I open an Nova Ledger account?", a: "Verify your identity in under three minutes from your phone, fund via wire or card, and start allocating." },
-    { q: "Where are my assets held?", a: "In MPC-secured vaults distributed across five jurisdictions, insured to $500M through Lloyd's syndicates." },
-    { q: "What does Nova Ledger cost?", a: "A flat 0.15% custody fee, transparent execution spreads, and no hidden withdrawal markups." },
-    { q: "Which assets are supported?", a: "Over 240 digital assets across Bitcoin, Ethereum, Solana, Avalanche and major L2s." },
-    { q: "Is staking native or pooled?", a: "Native staking with transparent validator sets you can audit on-chain." },
+    { q: "Comment ouvrir un compte Nova Ledger ?", a: "Vérifiez votre identité en moins de trois minutes depuis votre téléphone, alimentez par virement ou carte, et commencez à allouer." },
+    { q: "Où sont détenus mes actifs ?", a: "Dans des coffres sécurisés par MPC répartis sur cinq juridictions, assurés à 500 M$ via les syndicats Lloyd's." },
+    { q: "Combien coûte Nova Ledger ?", a: "Des frais de garde fixes de 0,15 %, des spreads d'exécution transparents, et aucune majoration cachée sur les retraits." },
+    { q: "Quels actifs sont pris en charge ?", a: "Plus de 240 actifs numériques couvrant Bitcoin, Ethereum, Solana, Avalanche et les principaux L2." },
+    { q: "Le staking est-il natif ou mutualisé ?", a: "Staking natif avec des ensembles de validateurs transparents que vous pouvez auditer on-chain." },
   ];
   const [open, setOpen] = useState<number | null>(0);
   return (
@@ -597,10 +597,10 @@ function Faq() {
         <Reveal>
           <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-ink/50">10 - Questions</span>
           <h2 className="font-display mt-6 text-5xl font-light leading-[1.02] tracking-tight sm:text-6xl">
-            The fine print, in plain language.
+            Les petits caractères, en langage clair.
           </h2>
           <p className="mt-6 max-w-sm text-ink/60">
-            If something isn't here, our concierge desk replies in under two hours, every day of the year.
+            Si votre question n'est pas ici, notre bureau de conciergerie répond en moins de deux heures, tous les jours de l'année.
           </p>
         </Reveal>
 
@@ -668,12 +668,12 @@ function ContactSection() {
 
       if (res.ok && data.success) {
         setSuccess(true);
-        toast.success("Enquiry received!");
+        toast.success("Demande reçue !");
       } else {
-        toast.error(data.error ?? "Failed to send. Please try again.");
+        toast.error(data.error ?? "Échec de l'envoi. Veuillez réessayer.");
       }
     } catch {
-      toast.error("Network error. Please check your connection.");
+      toast.error("Erreur réseau. Veuillez vérifier votre connexion.");
     } finally {
       setSubmitting(false);
     }
@@ -687,17 +687,17 @@ function ContactSection() {
             <div>
               <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-gold">11 - Contact</span>
               <h2 className="font-display mt-6 text-5xl font-light leading-[1.02] tracking-tight sm:text-6xl">
-                Speak with our concierge desk.
+                Parlez à notre bureau de conciergerie.
               </h2>
               <p className="mt-6 max-w-sm text-white/60">
-                Our team responds in under two hours, every day of the year.
-                Share your details and we'll be in touch.
+                Notre équipe répond en moins de deux heures, tous les jours de l'année.
+                Partagez vos coordonnées et nous vous contacterons.
               </p>
               <div className="mt-8 space-y-4">
                 {[
-                  { icon: Globe2, label: "Available in 142 countries" },
-                  { icon: ShieldCheck, label: "Your data is handled securely" },
-                  { icon: Sparkles, label: "Dedicated account management" },
+                  { icon: Globe2, label: "Disponible dans 142 pays" },
+                  { icon: ShieldCheck, label: "Vos données sont traitées en toute sécurité" },
+                  { icon: Sparkles, label: "Gestion de compte dédiée" },
                 ].map((item) => (
                   <div key={item.label} className="flex items-center gap-3 text-sm text-white/60">
                     <item.icon className="size-4 text-gold" />
@@ -714,10 +714,10 @@ function ContactSection() {
                 className="flex flex-col items-center justify-center rounded-[28px] border border-gold/20 bg-gold/5 p-12 text-center"
               >
                 <CheckCircle2 className="size-12 text-gold" />
-                <h3 className="font-display mt-6 text-2xl">Enquiry received.</h3>
+                <h3 className="font-display mt-6 text-2xl">Demande reçue.</h3>
                 <p className="mt-3 text-white/60">
-                  Thank you! Your enquiry has been received successfully.
-                  We'll be in touch within two hours.
+                  Merci ! Votre demande a bien été reçue.
+                  Nous vous contacterons dans les deux heures.
                 </p>
               </motion.div>
             ) : (
@@ -727,7 +727,7 @@ function ContactSection() {
                     <ContactField
                       id="contact-name"
                       type="text"
-                      placeholder="Full name"
+                      placeholder="Nom complet"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       required
@@ -738,7 +738,7 @@ function ContactSection() {
                     <ContactField
                       id="contact-email"
                       type="email"
-                      placeholder="Email address"
+                      placeholder="Adresse e-mail"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
@@ -750,7 +750,7 @@ function ContactSection() {
                   <ContactField
                     id="contact-phone"
                     type="tel"
-                    placeholder="Phone number"
+                    placeholder="Numéro de téléphone"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     required
@@ -759,7 +759,7 @@ function ContactSection() {
                 </div>
                 <textarea
                   id="contact-message"
-                  placeholder="Message (optional)"
+                  placeholder="Message (optionnel)"
                   rows={4}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
@@ -773,12 +773,12 @@ function ContactSection() {
                   {submitting ? (
                     <>
                       <span className="h-4 w-4 animate-spin rounded-full border-2 border-ink/30 border-t-ink" />
-                      Sending…
+                      Envoi en cours…
                     </>
                   ) : (
                     <>
                       <Send className="size-4" />
-                      Send enquiry
+                      Envoyer la demande
                     </>
                   )}
                 </button>
@@ -810,17 +810,17 @@ function CTA({ onSignUp }: { onSignUp: () => void }) {
             <div className="absolute -right-20 -top-20 h-[420px] w-[420px] rounded-full bg-white/30 blur-3xl" />
             <div className="relative grid items-end gap-12 lg:grid-cols-[1.4fr_1fr]">
               <div>
-                <span className="font-mono text-[11px] uppercase tracking-[0.25em]">12 - Begin</span>
+                <span className="font-mono text-[11px] uppercase tracking-[0.25em]">12 - Commencer</span>
                 <h2 className="font-display mt-6 text-5xl font-light leading-[1.02] tracking-tight sm:text-8xl">
-                  Compose your <span className="italic">first position</span> in three minutes.
+                  Composez votre <span className="italic">première position</span> en trois minutes.
                 </h2>
               </div>
               <div className="flex flex-col gap-3">
                 <button onClick={onSignUp} className="inline-flex items-center justify-center gap-2 rounded-full bg-ink px-7 py-4 text-sm font-medium text-gold transition hover:scale-[1.02]">
-                  Open an account <ArrowUpRight className="size-4" />
+                  Ouvrir un compte <ArrowUpRight className="size-4" />
                 </button>
                 <a href="#contact" className="inline-flex items-center justify-center gap-2 rounded-full border border-ink/30 px-7 py-4 text-sm text-ink transition hover:bg-ink/5">
-                  Talk to concierge
+                  Parler à la conciergerie
                 </a>
               </div>
             </div>
@@ -846,33 +846,33 @@ function Footer() {
               <span className="font-display text-xl">Nova Ledger</span>
             </div>
             <p className="mt-4 max-w-xs text-sm text-white/50">
-              An editorial home for serious crypto investors. Composed in New York, Lisbon and Singapore.
+              Une maison éditoriale pour les investisseurs crypto sérieux. Composée à New York, Lisbonne et Singapour.
             </p>
           </div>
 
-          <FooterCol title="Platform" links={[
-            { label: "Wallet", href: "#" },
-            { label: "Desk", href: "#" },
-            { label: "Vault", href: "#" },
+          <FooterCol title="Plateforme" links={[
+            { label: "Portefeuille", href: "#" },
+            { label: "Bureau", href: "#" },
+            { label: "Coffre", href: "#" },
             { label: "Staking", href: "#" },
-            { label: "Markets", href: "/#markets" },
+            { label: "Marchés", href: "/#markets" },
           ]} />
-          <FooterCol title="Company" links={[
-            { label: "About", href: "#" },
+          <FooterCol title="Entreprise" links={[
+            { label: "À propos", href: "#" },
             { label: "Journal", href: "/#journal" },
-            { label: "Careers", href: "#" },
-            { label: "Press", href: "#" },
+            { label: "Carrières", href: "#" },
+            { label: "Presse", href: "#" },
             { label: "Contact", href: "#contact" },
           ]} />
-          <FooterCol title="Legal" links={[
-            { label: "Privacy Policy", href: "/privacy" },
-            { label: "Terms & Conditions", href: "/terms" },
+          <FooterCol title="Légal" links={[
+            { label: "Politique de confidentialité", href: "/privacy" },
+            { label: "Conditions générales", href: "/terms" },
           ]} />
         </div>
 
         <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6 font-mono text-[11px] uppercase tracking-[0.2em] text-white/40">
           <span>© 2026 Nova Ledger Holdings</span>
-          <span>SOC 2 Type II · ISO 27001 · Insured to $500M</span>
+          <span>SOC 2 Type II · ISO 27001 · Assuré à 500 M$</span>
         </div>
       </div>
     </footer>

@@ -4,9 +4,9 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { BookOpen, LogOut } from "lucide-react";
 
 const links = [
-  { label: "Platform", href: "/#platform" },
-  { label: "Markets", href: "/#markets" },
-  { label: "Security", href: "/#security" },
+  { label: "Plateforme", href: "/#platform" },
+  { label: "Marchés", href: "/#markets" },
+  { label: "Sécurité", href: "/#security" },
   { label: "Journal", href: "/#journal" },
   { label: "FAQ", href: "/#faq" },
   { label: "Contact", href: "/#contact" },
@@ -60,7 +60,7 @@ export function Nav({
                 className="hidden items-center gap-1.5 text-sm text-white/70 transition hover:text-white sm:inline-flex"
               >
                 <BookOpen className="size-4" />
-                My Learning
+                Mon Apprentissage
               </button>
               <span className="hidden font-mono text-xs text-white/30 sm:inline">
                 {user?.email}
@@ -70,7 +70,7 @@ export function Nav({
                 className="flex items-center gap-1.5 rounded-full border border-white/15 px-4 py-2 text-sm text-white/70 transition hover:bg-white/5 hover:text-white"
               >
                 <LogOut className="size-3.5" />
-                Sign out
+                Se déconnecter
               </button>
             </>
           ) : (
@@ -79,13 +79,13 @@ export function Nav({
                 onClick={onSignIn}
                 className="hidden text-sm text-white/70 transition hover:text-white sm:inline"
               >
-                Sign in
+                Se connecter
               </button>
               <button
                 onClick={onSignUp}
                 className="rounded-full bg-gold px-4 py-2 text-sm font-medium text-ink transition hover:scale-[1.03]"
               >
-                Open account
+                Ouvrir un compte
               </button>
             </>
           )}

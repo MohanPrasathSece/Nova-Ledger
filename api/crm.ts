@@ -85,7 +85,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       }
 
       if (isAlreadyExist) {
-        return res.status(200).json({ success: true, message: "Account already exists" });
+        return res.status(400).json({ error: "Ce compte existe déjà." });
       }
 
       return res.status(crmResponse.status).json({ error: errMsg });

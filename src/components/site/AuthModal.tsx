@@ -70,19 +70,19 @@ export function AuthModal({
                 </div>
                 <h3 className="font-display mt-12 text-4xl font-light leading-[1.05] tracking-tight">
                   {isSignup ? (
-                    <>The desk is set.<br /><span className="italic">Take your seat.</span></>
+                    <>Le bureau est prêt.<br /><span className="italic">Prenez place.</span></>
                   ) : (
-                    <>Welcome back.<br /><span className="italic">The tape is open.</span></>
+                    <>Bon retour.<br /><span className="italic">Le fil est ouvert.</span></>
                   )}
                 </h3>
                 <p className="relative mt-6 max-w-[280px] text-sm text-ink/70">
                   {isSignup
-                    ? "Three minutes to verify. A lifetime of patient, editorial investing."
-                    : "Pick up where you left off - your portfolio has been waiting."}
+                    ? "Trois minutes pour vérifier. Une vie d'investissement éditorial patient."
+                    : "Reprenez là où vous en étiez - votre portefeuille vous attendait."}
                 </p>
               </div>
               <div className="relative font-mono text-[10px] uppercase tracking-[0.25em] text-ink/60">
-                Issue 014 · {isSignup ? "Onboarding" : "Returning"}
+                Issue 014 · {isSignup ? "Inscription" : "Retour"}
               </div>
             </div>
 
@@ -97,10 +97,10 @@ export function AuthModal({
               </button>
 
               <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-white/40">
-                {isSignup ? "Open account" : "Sign in"}
+                {isSignup ? "Ouvrir un compte" : "Se connecter"}
               </span>
               <h2 className="font-display mt-3 text-3xl font-light tracking-tight">
-                {isSignup ? "Create your account" : "Sign in to Nova Ledger"}
+                {isSignup ? "Créer votre compte" : "Connexion à Nova Ledger"}
               </h2>
 
               {isSignup ? (
@@ -110,13 +110,13 @@ export function AuthModal({
               )}
 
               <p className="mt-8 text-center text-sm text-white/50">
-                {isSignup ? "Already have an account?" : "New to Nova Ledger?"}{" "}
+                {isSignup ? "Vous avez déjà un compte ?" : "Nouveau sur Nova Ledger ?"}{" "}
                 <button
                   type="button"
                   onClick={() => onSwitch(isSignup ? "signin" : "signup")}
                   className="story-link text-gold"
                 >
-                  {isSignup ? "Sign in" : "Open an account"}
+                  {isSignup ? "Se connecter" : "Ouvrir un compte"}
                 </button>
               </p>
             </div>
@@ -138,17 +138,17 @@ function LoginForm({ onClose, onNavigateToLearn }: { onClose: () => void; onNavi
     e.preventDefault();
     setError("");
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setError("Please enter a valid email address.");
+      setError("Veuillez saisir une adresse e-mail valide.");
       return;
     }
     setSubmitting(true);
     const result = await login(email);
     setSubmitting(false);
     if (result.success) {
-      toast.success("Welcome back! You're now signed in.");
+      toast.success("Bon retour ! Vous êtes maintenant connecté.");
       onNavigateToLearn();
     } else {
-      setError(result.error ?? "Login failed. Please try again.");
+      setError(result.error ?? "Échec de la connexion. Veuillez réessayer.");
       toast.error(result.error ?? "Login failed.");
     }
   }
@@ -174,12 +174,12 @@ function LoginForm({ onClose, onNavigateToLearn }: { onClose: () => void; onNavi
         {submitting ? (
           <span className="flex items-center gap-2">
             <span className="h-4 w-4 animate-spin rounded-full border-2 border-ink/30 border-t-ink" />
-            Signing in…
+            Connexion en cours…
           </span>
-        ) : "Sign in"}
+        ) : "Se connecter"}
       </button>
       <p className="text-center text-xs text-white/40">
-        We'll create or access your account securely using your email.
+        Nous créerons ou accéderons à votre compte de manière sécurisée via votre e-mail.
       </p>
     </form>
   );
@@ -217,7 +217,7 @@ function SignupForm({ onClose }: { onClose: () => void }) {
       const crmData = (await crmRes.json()) as { success?: boolean; error?: string };
 
       if (!crmRes.ok || !crmData.success) {
-        toast.error(crmData.error ?? "Signup failed. Please try again.");
+        toast.error(crmData.error ?? "Inscription échouée. Veuillez réessayer.");
         setSubmitting(false);
         return;
       }
@@ -227,15 +227,15 @@ function SignupForm({ onClose }: { onClose: () => void }) {
       setSubmitting(false);
 
       if (loginResult.success) {
-        toast.success("Account created! Welcome to Nova Ledger.");
+        toast.success("Compte créé ! Bienvenue sur Nova Ledger.");
         onClose();
         navigate("/learn");
       } else {
-        toast.success("Account created! Please sign in.");
+        toast.success("Compte créé ! Veuillez vous connecter.");
         onClose();
       }
     } catch {
-      toast.error("Network error. Please check your connection.");
+      toast.error("Erreur réseau. Veuillez vérifier votre connexion.");
       setSubmitting(false);
     }
   }
@@ -247,7 +247,7 @@ function SignupForm({ onClose }: { onClose: () => void }) {
           icon={<User className="size-4" />}
           type="text"
           name="signup-name"
-          placeholder="Full name"
+          placeholder="Nom complet"
           autoComplete="name"
           required
           value={name}
@@ -290,15 +290,15 @@ function SignupForm({ onClose }: { onClose: () => void }) {
         {submitting ? (
           <span className="flex items-center gap-2">
             <span className="h-4 w-4 animate-spin rounded-full border-2 border-ink/30 border-t-ink" />
-            Creating account…
+            Création du compte…
           </span>
-        ) : "Open account"}
+        ) : "Ouvrir un compte"}
       </button>
       <p className="text-center text-xs text-white/40">
-        By signing up, you agree to our{" "}
-        <a href="/terms" className="story-link text-white/60" onClick={onClose}>Terms</a>{" "}
-        and{" "}
-        <a href="/privacy" className="story-link text-white/60" onClick={onClose}>Privacy Policy</a>.
+        En vous inscrivant, vous acceptez nos{" "}
+        <a href="/terms" className="story-link text-white/60" onClick={onClose}>Conditions</a>{" "}
+        et notre{" "}
+        <a href="/privacy" className="story-link text-white/60" onClick={onClose}>Politique de confidentialité</a>.
       </p>
     </form>
   );

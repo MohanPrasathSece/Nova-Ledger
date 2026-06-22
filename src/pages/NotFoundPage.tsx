@@ -14,16 +14,16 @@ export default function NotFoundPage() {
           404
         </div>
         <h1 className="font-display -mt-8 text-5xl font-light tracking-tight sm:text-7xl">
-          Page not found.
+          Page introuvable.
         </h1>
         <p className="mt-6 text-white/60">
-          The page you're looking for doesn't exist or has been moved.
+          La page que vous recherchez n'existe pas ou a été déplacée.
         </p>
         <Link
           to="/"
           className="mt-10 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3.5 text-sm font-medium text-ink transition hover:scale-[1.03]"
         >
-          Return home
+          Retour à l'accueil
         </Link>
       </motion.div>
     </div>

@@ -31,15 +31,15 @@ import { AuthModal, type AuthMode } from "@/components/site/AuthModal";
    ====================================================== */
 
 const TABS = [
-  { id: "intro", label: "Intro to Crypto", icon: Bitcoin },
+  { id: "intro", label: "Intro à la Crypto", icon: Bitcoin },
   { id: "blockchain", label: "Blockchain", icon: Layers },
-  { id: "investing", label: "Investing", icon: TrendingUp },
-  { id: "trading", label: "Trading Basics", icon: BarChart3 },
-  { id: "ai", label: "AI & Markets", icon: Brain },
-  { id: "portfolio", label: "Portfolio", icon: PieChart },
-  { id: "risk", label: "Risk Management", icon: AlertTriangle },
-  { id: "trends", label: "Market Trends", icon: Activity },
-  { id: "security", label: "Security", icon: Shield },
+  { id: "investing", label: "Investissement", icon: TrendingUp },
+  { id: "trading", label: "Bases du Trading", icon: BarChart3 },
+  { id: "ai", label: "IA & Marchés", icon: Brain },
+  { id: "portfolio", label: "Portefeuille", icon: PieChart },
+  { id: "risk", label: "Gestion des Risques", icon: AlertTriangle },
+  { id: "trends", label: "Tendances du Marché", icon: Activity },
+  { id: "security", label: "Sécurité", icon: Shield },
   { id: "faq", label: "FAQ", icon: HelpCircle },
 ];
 
@@ -87,7 +87,7 @@ export default function LearnPage() {
             <span className="h-3 w-3 rounded-full bg-yellow-500/70" />
             <span className="h-3 w-3 rounded-full bg-green-500/70" />
             <span className="ml-4 font-mono text-[10px] uppercase tracking-[0.2em] text-white/30">
-              nova-ledger://learn - educational content
+              nova-ledger://learn - contenu éducatif
             </span>
           </div>
           {/* Tab bar */}
@@ -196,7 +196,7 @@ function LearnHero() {
           className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.25em] text-white/70"
         >
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-gold" />
-          Member Access · Educational Content
+          Accès Membre · Contenu Éducatif
         </motion.span>
 
         <motion.h1
@@ -205,8 +205,8 @@ function LearnHero() {
           transition={{ duration: 1.1, delay: 0.15 }}
           className="font-display mt-8 max-w-4xl text-[clamp(2.5rem,6vw,6rem)] font-light leading-[0.95] tracking-tight"
         >
-          Your guide to the
-          <span className="block italic text-gold">digital asset universe.</span>
+          Votre guide dans
+          <span className="block italic text-gold">l'univers des actifs numériques.</span>
         </motion.h1>
 
         <motion.p
@@ -215,8 +215,8 @@ function LearnHero() {
           transition={{ duration: 0.9, delay: 0.4 }}
           className="mt-6 max-w-xl text-base text-white/60 sm:text-lg"
         >
-          Curated, editorial education for serious investors. Navigate the tabs above
-          to explore everything from blockchain fundamentals to advanced risk management.
+          Une éducation éditoriale pour les investisseurs sérieux. Naviguez dans les onglets ci-dessus
+          pour tout explorer, des fondamentaux de la blockchain à la gestion avancée des risques.
         </motion.p>
 
         {/* Live market widget */}
@@ -369,9 +369,9 @@ function IntroCrypto() {
     <SectionWrap>
       <SectionHeader
         num="01"
-        label="Introduction to Cryptocurrency"
-        title={<>What is <span className="italic text-gold">cryptocurrency?</span></>}
-        sub="Cryptocurrency is a digital form of money secured by cryptography, operating on decentralised networks without central bank control."
+        label="Introduction à la Cryptomonnaie"
+        title={<>Qu'est-ce que <span className="italic text-gold">la cryptomonnaie ?</span></>}
+        sub="La cryptomonnaie est une forme numérique d'argent sécurisée par la cryptographie, fonctionnant sur des réseaux décentralisés sans le contrôle d'une banque centrale."
       />
 
       <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -379,22 +379,22 @@ function IntroCrypto() {
           <EduCard
             icon={Bitcoin}
             accent
-            title="Digital Money"
-            body="Cryptocurrencies like Bitcoin allow peer-to-peer value transfer globally, 24/7, without banks or intermediaries."
+            title="Argent Numérique"
+            body="Les cryptomonnaies comme le Bitcoin permettent le transfert de valeur de pair à pair dans le monde entier, 24h/24 et 7j/7, sans banques ni intermédiaires."
           />
         </Reveal>
         <Reveal delay={0.15}>
           <EduCard
             icon={Lock}
-            title="Cryptographic Security"
-            body="Every transaction is secured by advanced cryptography - public and private keys that make forgery mathematically impossible."
+            title="Sécurité Cryptographique"
+            body="Chaque transaction est sécurisée par une cryptographie avancée - des clés publiques et privées qui rendent la falsification mathématiquement impossible."
           />
         </Reveal>
         <Reveal delay={0.2}>
           <EduCard
             icon={Globe}
-            title="Decentralisation"
-            body="No single entity controls the network. Thousands of nodes worldwide validate transactions and maintain consensus."
+            title="Décentralisation"
+            body="Aucune entité unique ne contrôle le réseau. Des milliers de nœuds dans le monde valident les transactions et maintiennent le consensus."
           />
         </Reveal>
       </div>
@@ -403,14 +403,14 @@ function IntroCrypto() {
         <div className="overflow-hidden rounded-[28px] border border-white/10 bg-gradient-to-br from-gold/10 via-transparent to-transparent p-8 lg:p-12">
           <div className="grid gap-8 lg:grid-cols-2">
             <div>
-              <h3 className="font-display text-3xl font-light">A brief history</h3>
+              <h3 className="font-display text-3xl font-light">Un bref historique</h3>
               <div className="mt-8 space-y-6">
                 {[
-                  { year: "2008", event: "Satoshi Nakamoto publishes the Bitcoin whitepaper." },
-                  { year: "2009", event: "The first Bitcoin block (Genesis Block) is mined." },
-                  { year: "2015", event: "Ethereum launches, introducing smart contracts." },
-                  { year: "2020", event: "DeFi summer - $10B locked in decentralised protocols." },
-                  { year: "2024", event: "Bitcoin spot ETFs approved, mainstream adoption accelerates." },
+                  { year: "2008", event: "Satoshi Nakamoto publie le livre blanc du Bitcoin." },
+                  { year: "2009", event: "Le premier bloc de Bitcoin (Bloc Genesis) est miné." },
+                  { year: "2015", event: "Lancement d'Ethereum, introduisant les contrats intelligents." },
+                  { year: "2020", event: "L'été de la DeFi - 10 milliards de dollars bloqués dans des protocoles décentralisés." },
+                  { year: "2024", event: "Les ETF Bitcoin au comptant sont approuvés, l'adoption grand public s'accélère." },
                 ].map((item) => (
                   <div key={item.year} className="flex items-start gap-4">
                     <span className="mt-1 font-mono text-xs text-gold">{item.year}</span>
@@ -421,14 +421,14 @@ function IntroCrypto() {
               </div>
             </div>
             <div>
-              <h3 className="font-display text-3xl font-light">Key concepts</h3>
+              <h3 className="font-display text-3xl font-light">Concepts clés</h3>
               <div className="mt-8 space-y-4">
                 {[
-                  { term: "Wallet", def: "Software that stores your private keys and lets you manage your digital assets." },
-                  { term: "Private Key", def: "A secret number that proves ownership of your cryptocurrency - never share it." },
-                  { term: "Transaction", def: "A digitally signed transfer of value recorded permanently on the blockchain." },
-                  { term: "Mining", def: "The process of validating transactions and adding them to the blockchain in exchange for rewards." },
-                  { term: "Halving", def: "A scheduled event that cuts Bitcoin's new supply in half - historically a bullish catalyst." },
+                  { term: "Portefeuille (Wallet)", def: "Logiciel qui stocke vos clés privées et vous permet de gérer vos actifs numériques." },
+                  { term: "Clé Privée", def: "Un numéro secret qui prouve la propriété de votre cryptomonnaie - ne la partagez jamais." },
+                  { term: "Transaction", def: "Un transfert de valeur signé numériquement et enregistré en permanence sur la blockchain." },
+                  { term: "Minage", def: "Le processus de validation des transactions et de leur ajout à la blockchain en échange de récompenses." },
+                  { term: "Halving", def: "Un événement programmé qui réduit de moitié la nouvelle offre de Bitcoin - historiquement un catalyseur haussier." },
                 ].map((item) => (
                   <div key={item.term} className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-4">
                     <div className="font-display text-gold">{item.term}</div>
@@ -450,15 +450,15 @@ function BlockchainSection() {
     <SectionWrap>
       <SectionHeader
         num="02"
-        label="Understanding Blockchain"
-        title={<>The ledger that<span className="italic text-gold block"> cannot lie.</span></>}
-        sub="A blockchain is an immutable, distributed ledger. Each block contains a cryptographic fingerprint of the previous block, forming an unbreakable chain."
+        label="Comprendre la Blockchain"
+        title={<>Le registre qui<span className="italic text-gold block"> ne peut pas mentir.</span></>}
+        sub="Une blockchain est un registre immuable et distribué. Chaque bloc contient une empreinte cryptographique du bloc précédent, formant une chaîne incassable."
       />
 
       <div className="mt-16 grid gap-6 lg:grid-cols-2">
         <Reveal>
           <div className="space-y-4">
-            {["Block Header", "Transaction Data", "Merkle Root", "Previous Block Hash", "Nonce"].map((part, i) => (
+            {["En-tête de Bloc", "Données de Transaction", "Racine Merkle", "Hash du Bloc Précédent", "Nonce"].map((part, i) => (
               <motion.div
                 key={part}
                 initial={{ x: -20, opacity: 0 }}
@@ -472,7 +472,7 @@ function BlockchainSection() {
                 </div>
                 <div>
                   <div className="font-display text-lg">{part}</div>
-                  <div className="text-xs text-white/40">Block component #{i + 1}</div>
+                  <div className="text-xs text-white/40">Composant de bloc #{i + 1}</div>
                 </div>
               </motion.div>
             ))}
@@ -484,18 +484,18 @@ function BlockchainSection() {
             <EduCard
               icon={Layers}
               accent
-              title="Consensus Mechanisms"
-              body="How thousands of strangers agree on truth: Proof of Work requires computational effort; Proof of Stake requires collateral. Both prevent fraud."
+              title="Mécanismes de Consensus"
+              body="Comment des milliers d'inconnus s'accordent sur la vérité : la Preuve de Travail (Proof of Work) nécessite un effort de calcul ; la Preuve d'Enjeu (Proof of Stake) nécessite une garantie. Les deux empêchent la fraude."
             />
             <EduCard
               icon={Zap}
-              title="Smart Contracts"
-              body="Self-executing code on the blockchain. When conditions are met, the contract runs automatically - no lawyers, no middlemen."
+              title="Contrats Intelligents"
+              body="Code auto-exécutable sur la blockchain. Lorsque les conditions sont remplies, le contrat s'exécute automatiquement - sans avocats, sans intermédiaires."
             />
             <EduCard
               icon={Globe}
-              title="Layer 2 Scaling"
-              body="Protocols like Lightning Network and Optimism process thousands of transactions off-chain, settling on the main chain for security."
+              title="Mise à l'échelle de Couche 2"
+              body="Des protocoles comme le Lightning Network et Optimism traitent des milliers de transactions hors chaîne, se réglant sur la chaîne principale pour la sécurité."
             />
           </div>
         </Reveal>
@@ -510,19 +510,19 @@ function InvestingSection() {
     <SectionWrap>
       <SectionHeader
         num="03"
-        label="Digital Asset Investing"
-        title={<>Invest with<span className="italic text-gold"> conviction.</span></>}
-        sub="Digital asset investing rewards patience, research, and disciplined position sizing. The market is volatile - your framework must not be."
+        label="Investissement en Actifs Numériques"
+        title={<>Investissez avec<span className="italic text-gold"> conviction.</span></>}
+        sub="L'investissement en actifs numériques récompense la patience, la recherche et un dimensionnement de position discipliné. Le marché est volatil - votre stratégie ne doit pas l'être."
       />
 
       <div className="mt-16 grid gap-6 lg:grid-cols-3">
         {[
-          { icon: TrendingUp, accent: true, title: "HODLing", body: "Long-term holding through volatility. Historically the best strategy for Bitcoin and Ethereum over 4+ year cycles." },
-          { icon: BarChart3, title: "Dollar-Cost Averaging", body: "Invest a fixed amount on a regular schedule regardless of price - eliminates the stress of timing the market." },
-          { icon: PieChart, title: "Portfolio Allocation", body: "Most serious investors keep crypto between 5–20% of total net worth, with BTC and ETH forming the core." },
-          { icon: Activity, title: "Market Cycles", body: "Crypto follows 4-year cycles correlated with Bitcoin halvings. Understanding cycles prevents panic selling." },
-          { icon: Shield, title: "Due Diligence", body: "Research tokenomics, team, use case, and on-chain metrics before allocating. Most altcoins fail." },
-          { icon: Globe, title: "Regulatory Awareness", body: "Stay current on regulatory changes in your jurisdiction. Tax reporting requirements vary significantly." },
+          { icon: TrendingUp, accent: true, title: "HODLing", body: "Conservation à long terme à travers la volatilité. Historiquement, la meilleure stratégie pour Bitcoin et Ethereum sur des cycles de plus de 4 ans." },
+          { icon: BarChart3, title: "Investissement Programmé (DCA)", body: "Investissez un montant fixe selon un calendrier régulier, quel que soit le prix - élimine le stress d'essayer de synchroniser le marché." },
+          { icon: PieChart, title: "Allocation de Portefeuille", body: "La plupart des investisseurs sérieux maintiennent la crypto entre 5 et 20 % de leur valeur nette totale, avec BTC et ETH formant le cœur." },
+          { icon: Activity, title: "Cycles de Marché", body: "La crypto suit des cycles de 4 ans corrélés aux halvings de Bitcoin. Comprendre les cycles évite les ventes de panique." },
+          { icon: Shield, title: "Diligence Raisonnable", body: "Recherchez la tokenomique, l'équipe, le cas d'utilisation et les métriques on-chain avant d'allouer. La plupart des altcoins échouent." },
+          { icon: Globe, title: "Sensibilisation Réglementaire", body: "Restez au courant des changements réglementaires dans votre juridiction. Les exigences de déclaration fiscale varient considérablement." },
         ].map((c, i) => (
           <Reveal key={c.title} delay={i * 0.05}>
             <EduCard {...c} />
@@ -532,12 +532,12 @@ function InvestingSection() {
 
       <Reveal className="mt-12">
         <div className="rounded-[28px] border border-gold/20 bg-gold/5 p-8">
-          <h3 className="font-display text-2xl">The Nova Ledger Allocation Framework</h3>
+          <h3 className="font-display text-2xl">Le Cadre d'Allocation Nova Ledger</h3>
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
             {[
-              { label: "Core (BTC + ETH)", pct: 60, color: "bg-gold" },
-              { label: "Large Cap Alts", pct: 25, color: "bg-white/70" },
-              { label: "High-Risk / Speculative", pct: 15, color: "bg-white/30" },
+              { label: "Cœur (BTC + ETH)", pct: 60, color: "bg-gold" },
+              { label: "Grandes Capitalisations", pct: 25, color: "bg-white/70" },
+              { label: "Haut Risque / Spéculatif", pct: 15, color: "bg-white/30" },
             ].map((row) => (
               <div key={row.label}>
                 <div className="flex justify-between text-sm">
@@ -568,22 +568,22 @@ function TradingSection() {
     <SectionWrap>
       <SectionHeader
         num="04"
-        label="Crypto Trading Basics"
-        title={<>Read the tape,<span className="italic text-gold"> not the noise.</span></>}
-        sub="Successful trading requires discipline, clear entry and exit rules, and a willingness to sit on your hands most of the time."
+        label="Bases du Trading Crypto"
+        title={<>Lisez le marché,<span className="italic text-gold"> pas le bruit.</span></>}
+        sub="Le trading réussi nécessite de la discipline, des règles d'entrée et de sortie claires, et une volonté de rester sur la touche la plupart du temps."
       />
 
       <div className="mt-16 grid gap-8 lg:grid-cols-[1.2fr_1fr]">
         <Reveal>
           <div className="space-y-6">
-            <h3 className="font-display text-2xl font-light">Live Candlestick Chart</h3>
+            <h3 className="font-display text-2xl font-light">Graphique en Chandeliers en Direct</h3>
             <CandlestickChart />
             <div className="grid grid-cols-2 gap-3">
               {[
-                { label: "24h Volume", val: "$812M", up: true },
-                { label: "Open Interest", val: "$4.2B", up: true },
-                { label: "Funding Rate", val: "0.012%", up: false },
-                { label: "Bid/Ask Spread", val: "0.08%", up: false },
+                { label: "Volume 24h", val: "812M $", up: true },
+                { label: "Intérêt Ouvert", val: "4,2MM $", up: true },
+                { label: "Taux de Financement", val: "0,012%", up: false },
+                { label: "Spread Bid/Ask", val: "0,08%", up: false },
               ].map((m) => (
                 <div key={m.label} className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
                   <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/40">{m.label}</div>
@@ -596,14 +596,14 @@ function TradingSection() {
 
         <Reveal delay={0.2}>
           <div className="space-y-4">
-            <h3 className="font-display text-2xl font-light">Core Concepts</h3>
+            <h3 className="font-display text-2xl font-light">Concepts Fondamentaux</h3>
             {[
-              { term: "Support & Resistance", def: "Price levels where buying or selling pressure historically concentrates." },
-              { term: "Volume Analysis", def: "High volume confirms price moves. Low-volume rallies are suspicious." },
-              { term: "Relative Strength", def: "Compare asset performance to BTC. Assets leading BTC signal sector rotation." },
-              { term: "Stop Loss", def: "A pre-set exit order that limits your downside. Non-negotiable for every trade." },
-              { term: "Position Sizing", def: "Never risk more than 1–2% of your portfolio on a single trade." },
-              { term: "Risk/Reward Ratio", def: "Only take trades where the potential reward is at least 3x the risk." },
+              { term: "Support & Résistance", def: "Niveaux de prix où la pression d'achat ou de vente se concentre historiquement." },
+              { term: "Analyse du Volume", def: "Un volume élevé confirme les mouvements de prix. Les rallyes à faible volume sont suspects." },
+              { term: "Force Relative", def: "Comparez la performance de l'actif au BTC. Les actifs qui devancent le BTC signalent une rotation sectorielle." },
+              { term: "Stop Loss", def: "Un ordre de sortie prédéfini qui limite vos pertes. Non négociable pour chaque transaction." },
+              { term: "Taille de Position", def: "Ne risquez jamais plus de 1 à 2 % de votre portefeuille sur une seule transaction." },
+              { term: "Ratio Risque/Récompense", def: "Ne prenez que des transactions où la récompense potentielle est d'au moins 3x le risque." },
             ].map((item) => (
               <div key={item.term} className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-4">
                 <div className="font-display text-gold">{item.term}</div>
@@ -623,19 +623,19 @@ function AISection() {
     <SectionWrap>
       <SectionHeader
         num="05"
-        label="AI & Market Analysis"
-        title={<>Machine intelligence,<span className="italic text-gold"> human judgment.</span></>}
-        sub="AI tools augment analysis - pattern recognition, sentiment parsing, anomaly detection - but cannot replace disciplined human decision-making."
+        label="IA & Analyse de Marché"
+        title={<>Intelligence artificielle,<span className="italic text-gold"> jugement humain.</span></>}
+        sub="Les outils d'IA augmentent l'analyse - reconnaissance des modèles, analyse du sentiment, détection des anomalies - mais ne peuvent pas remplacer une prise de décision humaine disciplinée."
       />
 
       <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {[
-          { icon: Brain, accent: true, title: "Sentiment Analysis", body: "NLP models parse millions of social posts and news articles to gauge market sentiment in real time - fear, greed, uncertainty." },
-          { icon: Activity, title: "On-Chain Analytics", body: "AI identifies whale movements, exchange flows, and miner behaviour from raw blockchain data - signals invisible to chart readers." },
-          { icon: BarChart3, title: "Pattern Recognition", body: "Machine learning models trained on decades of price data identify chart patterns with statistical edges - not guarantees." },
-          { icon: Zap, title: "Algorithmic Execution", body: "Smart order routing algorithms execute large positions with minimal market impact, using TWAP and VWAP strategies." },
-          { icon: Globe, title: "Macro Correlations", body: "AI models track crypto's evolving correlation with risk assets, rates, and dollar strength to contextualise price action." },
-          { icon: Shield, title: "Risk Modelling", body: "Portfolio-level AI stress tests your holdings against historical drawdown scenarios and generates tail-risk estimates." },
+          { icon: Brain, accent: true, title: "Analyse du Sentiment", body: "Les modèles NLP analysent des millions de publications sociales et d'articles d'actualité pour évaluer le sentiment du marché en temps réel - peur, cupidité, incertitude." },
+          { icon: Activity, title: "Analytique On-Chain", body: "L'IA identifie les mouvements des baleines, les flux des échanges et le comportement des mineurs à partir des données brutes de la blockchain - des signaux invisibles pour les lecteurs de graphiques." },
+          { icon: BarChart3, title: "Reconnaissance de Modèles", body: "Les modèles d'apprentissage automatique formés sur des décennies de données de prix identifient des modèles graphiques avec des avantages statistiques - pas des garanties." },
+          { icon: Zap, title: "Exécution Algorithmique", body: "Les algorithmes de routage d'ordres intelligents exécutent de grandes positions avec un impact minimal sur le marché, en utilisant les stratégies TWAP et VWAP." },
+          { icon: Globe, title: "Corrélations Macro", body: "Les modèles d'IA suivent l'évolution de la corrélation de la crypto avec les actifs à risque, les taux et la force du dollar pour contextualiser l'action des prix." },
+          { icon: Shield, title: "Modélisation des Risques", body: "L'IA au niveau du portefeuille soumet vos actifs à des tests de résistance par rapport à des scénarios de baisse historiques et génère des estimations de risques extrêmes." },
         ].map((c, i) => (
           <Reveal key={c.title} delay={i * 0.05}>
             <EduCard {...c} />
@@ -652,22 +652,22 @@ function PortfolioSection() {
     { name: "Bitcoin", sym: "BTC", pct: 42, color: "var(--gold)" },
     { name: "Ethereum", sym: "ETH", pct: 28, color: "rgba(255,255,255,0.9)" },
     { name: "Solana", sym: "SOL", pct: 14, color: "rgba(255,255,255,0.5)" },
-    { name: "Other", sym: "ALTS", pct: 16, color: "rgba(255,255,255,0.2)" },
+    { name: "Autres", sym: "ALTS", pct: 16, color: "rgba(255,255,255,0.2)" },
   ];
 
   return (
     <SectionWrap>
       <SectionHeader
         num="06"
-        label="Portfolio Diversification"
-        title={<>Build a portfolio<span className="italic text-gold"> that endures.</span></>}
-        sub="Diversification in crypto is not about owning 100 coins - it's about intelligent allocation across asset classes, risk profiles, and holding periods."
+        label="Diversification du Portefeuille"
+        title={<>Construire un portefeuille<span className="italic text-gold"> qui dure.</span></>}
+        sub="La diversification dans la crypto ne consiste pas à posséder 100 pièces - il s'agit d'une allocation intelligente entre les classes d'actifs, les profils de risque et les périodes de détention."
       />
 
       <div className="mt-16 grid gap-8 lg:grid-cols-2">
         <Reveal>
           <div className="rounded-[28px] border border-white/10 bg-gradient-to-b from-white/[0.05] to-transparent p-8">
-            <h3 className="font-display text-2xl font-light">Sample Allocation</h3>
+            <h3 className="font-display text-2xl font-light">Allocation Type</h3>
             <div className="mt-8 space-y-4">
               {assets.map((a, i) => (
                 <div key={a.sym}>
@@ -698,9 +698,9 @@ function PortfolioSection() {
         <Reveal delay={0.2}>
           <div className="space-y-4">
             {[
-              { icon: PieChart, accent: true, title: "Correlation Awareness", body: "Altcoins are highly correlated to BTC. 'Diversifying' into 20 altcoins often provides less protection than simply holding more BTC." },
-              { icon: TrendingUp, title: "Rebalancing", body: "Systematically rebalance quarterly. Trim winners that have grown beyond their target allocation; add to laggards." },
-              { icon: Shield, title: "Cold Storage Ratio", body: "Keep 80%+ of long-term holdings in hardware wallets. Only keep active trading capital on exchanges." },
+              { icon: PieChart, accent: true, title: "Conscience des Corrélations", body: "Les altcoins sont fortement corrélés au BTC. 'Se diversifier' dans 20 altcoins offre souvent moins de protection que de simplement détenir plus de BTC." },
+              { icon: TrendingUp, title: "Rééquilibrage", body: "Rééquilibrez systématiquement chaque trimestre. Réduisez les gagnants qui ont dépassé leur allocation cible ; ajoutez aux retardataires." },
+              { icon: Shield, title: "Ratio de Stockage à Froid", body: "Conservez plus de 80 % de vos actifs à long terme dans des portefeuilles matériels. Ne gardez que le capital de trading actif sur les échanges." },
             ].map((c, i) => (
               <Reveal key={c.title} delay={i * 0.1}>
                 <EduCard {...c} />
@@ -719,19 +719,19 @@ function RiskSection() {
     <SectionWrap>
       <SectionHeader
         num="07"
-        label="Risk Management"
-        title={<>Survive first,<span className="italic text-gold"> then thrive.</span></>}
-        sub="The investors who compound wealth in crypto are those who avoided catastrophic loss - not those who picked the best altcoin."
+        label="Gestion des Risques"
+        title={<>Survivre d'abord,<span className="italic text-gold"> prospérer ensuite.</span></>}
+        sub="Les investisseurs qui font croître leur patrimoine dans la crypto sont ceux qui ont évité des pertes catastrophiques - pas ceux qui ont choisi le meilleur altcoin."
       />
 
       <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {[
-          { icon: AlertTriangle, accent: true, title: "Position Sizing", body: "The Kelly Criterion: size positions so a string of losses cannot threaten your capital base. Never bet the house." },
-          { icon: Shield, title: "Stop Losses", body: "Define your maximum loss before entering any trade. Honour it. Emotional stops are the #1 cause of account ruin." },
-          { icon: Activity, title: "Drawdown Limits", body: "Set a daily and monthly loss limit. If breached, stop trading. Revenge trading destroys more accounts than any market." },
-          { icon: Lock, title: "Exchange Risk", body: "Keep only what you're actively trading on exchanges. The lesson of FTX: not your keys, not your coins." },
-          { icon: Globe, title: "Regulatory Risk", body: "Governments can restrict or ban crypto. Diversify across jurisdictions and maintain compliance records." },
-          { icon: Zap, title: "Smart Contract Risk", body: "DeFi protocols can be exploited. Audit history, TVL concentration, and insurance coverage before depositing." },
+          { icon: AlertTriangle, accent: true, title: "Taille de Position", body: "Le Critère de Kelly : dimensionnez les positions de manière à ce qu'une série de pertes ne puisse pas menacer votre capital. Ne pariez jamais la maison." },
+          { icon: Shield, title: "Stop Loss", body: "Définissez votre perte maximale avant d'entrer dans une transaction. Respectez-la. Les arrêts émotionnels sont la première cause de ruine de compte." },
+          { icon: Activity, title: "Limites de Baisse", body: "Fixez une limite de perte quotidienne et mensuelle. Si elle est franchie, arrêtez de trader. Le trading de revanche détruit plus de comptes que n'importe quel marché." },
+          { icon: Lock, title: "Risque lié aux Échanges", body: "Ne gardez que ce que vous tradez activement sur les échanges. La leçon de FTX : pas vos clés, pas vos pièces." },
+          { icon: Globe, title: "Risque Réglementaire", body: "Les gouvernements peuvent restreindre ou interdire la crypto. Diversifiez-vous dans plusieurs juridictions et conservez des dossiers de conformité." },
+          { icon: Zap, title: "Risque des Contrats Intelligents", body: "Les protocoles DeFi peuvent être exploités. Vérifiez l'historique des audits, la concentration de la TVL et la couverture d'assurance avant de déposer." },
         ].map((c, i) => (
           <Reveal key={c.title} delay={i * 0.05}>
             <EduCard {...c} />
@@ -748,18 +748,18 @@ function TrendsSection() {
     <SectionWrap>
       <SectionHeader
         num="08"
-        label="Market Trends"
-        title={<>The macro forces<span className="italic text-gold"> shaping crypto.</span></>}
-        sub="Understanding the broader forces driving crypto markets is essential for positioning ahead of major moves."
+        label="Tendances du Marché"
+        title={<>Les forces macro<span className="italic text-gold"> façonnant la crypto.</span></>}
+        sub="Comprendre les forces plus larges qui animent les marchés de la cryptomonnaie est essentiel pour se positionner avant les mouvements majeurs."
       />
 
       <div className="mt-16">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            { sym: "BTC", name: "Bitcoin", price: "67,420", chg: "+1.84%", up: true, path: "M0,30 L20,28 L40,32 L60,22 L80,26 L100,18 L120,14 L140,10" },
-            { sym: "ETH", name: "Ethereum", price: "3,842", chg: "+2.41%", up: true, path: "M0,28 L20,30 L40,24 L60,20 L80,22 L100,12 L120,16 L140,8" },
-            { sym: "SOL", name: "Solana", price: "184.3", chg: "+5.10%", up: true, path: "M0,32 L20,26 L40,28 L60,18 L80,14 L100,20 L120,10 L140,6" },
-            { sym: "DOT", name: "Polkadot", price: "8.42", chg: "-0.42%", up: false, path: "M0,18 L20,22 L40,16 L60,24 L80,20 L100,28 L120,24 L140,30" },
+            { sym: "BTC", name: "Bitcoin", price: "67 420", chg: "+1.84%", up: true, path: "M0,30 L20,28 L40,32 L60,22 L80,26 L100,18 L120,14 L140,10" },
+            { sym: "ETH", name: "Ethereum", price: "3 842", chg: "+2.41%", up: true, path: "M0,28 L20,30 L40,24 L60,20 L80,22 L100,12 L120,16 L140,8" },
+            { sym: "SOL", name: "Solana", price: "184,3", chg: "+5.10%", up: true, path: "M0,32 L20,26 L40,28 L60,18 L80,14 L100,20 L120,10 L140,6" },
+            { sym: "DOT", name: "Polkadot", price: "8,42", chg: "-0.42%", up: false, path: "M0,18 L20,22 L40,16 L60,24 L80,20 L100,28 L120,24 L140,30" },
           ].map((c, i) => (
             <Reveal key={c.sym} delay={i * 0.05}>
               <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
@@ -768,7 +768,7 @@ function TrendsSection() {
                   <span className={`font-mono text-xs ${c.up ? "text-emerald-400" : "text-red-400"}`}>{c.chg}</span>
                 </div>
                 <div className="mt-3 font-display text-sm text-white/60">{c.name}</div>
-                <div className="font-display text-2xl tracking-tight">${c.price}</div>
+                <div className="font-display text-2xl tracking-tight">{c.price} $</div>
                 <svg viewBox="0 0 140 40" className="mt-3 h-10 w-full">
                   <motion.path
                     d={c.path}
@@ -788,9 +788,9 @@ function TrendsSection() {
 
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {[
-            { icon: TrendingUp, accent: true, title: "Bitcoin ETF Inflows", body: "Spot ETF approval opened crypto to institutional capital. Monthly inflows now rival gold ETFs - a structural shift in demand." },
-            { icon: Globe, title: "Stablecoin Expansion", body: "USDT and USDC circulation exceeds $150B. Stablecoins are becoming critical global payment infrastructure, driving regulatory focus." },
-            { icon: Zap, title: "Layer 2 Adoption", body: "Ethereum L2s process more transactions than the mainchain at a fraction of the cost. This scalability is attracting developers and users." },
+            { icon: TrendingUp, accent: true, title: "Afflux des ETF Bitcoin", body: "L'approbation des ETF au comptant a ouvert la crypto aux capitaux institutionnels. Les afflux mensuels rivalisent désormais avec les ETF sur l'or - un changement structurel de la demande." },
+            { icon: Globe, title: "Expansion des Stablecoins", body: "La circulation de l'USDT et de l'USDC dépasse les 150 milliards de dollars. Les stablecoins deviennent une infrastructure mondiale de paiement essentielle, attirant l'attention des régulateurs." },
+            { icon: Zap, title: "Adoption de la Couche 2", body: "Les L2 d'Ethereum traitent plus de transactions que la chaîne principale à une fraction du coût. Cette évolutivité attire les développeurs et les utilisateurs." },
           ].map((c, i) => (
             <Reveal key={c.title} delay={i * 0.1}>
               <EduCard {...c} />
@@ -808,19 +808,19 @@ function SecuritySection() {
     <SectionWrap>
       <SectionHeader
         num="09"
-        label="Security Best Practices"
-        title={<>Your keys,<span className="italic text-gold"> your kingdom.</span></>}
-        sub="Cryptocurrency security is personal responsibility. There are no chargebacks, no customer service lines. Get it right the first time."
+        label="Bonnes Pratiques de Sécurité"
+        title={<>Vos clés,<span className="italic text-gold"> votre royaume.</span></>}
+        sub="La sécurité des cryptomonnaies relève de la responsabilité personnelle. Il n'y a pas de rétrofacturation, pas de service client. Faites-le bien du premier coup."
       />
 
       <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {[
-          { icon: Lock, accent: true, title: "Hardware Wallets", body: "Ledger, Trezor, Coldcard - for any holding worth protecting, a hardware wallet is non-negotiable. Private keys never touch the internet." },
-          { icon: Shield, title: "Seed Phrase Security", body: "Your 12/24-word seed phrase is the master key. Store it on metal, in multiple physical locations, never digitally." },
-          { icon: Zap, title: "Multi-Signature", body: "Require multiple keys to authorise transactions. 2-of-3 or 3-of-5 multisig eliminates single points of failure." },
-          { icon: AlertTriangle, title: "Phishing Defence", body: "Verify URLs obsessively. Bookmark official sites. Never click crypto links in emails, DMs, or ads - even from 'known' senders." },
-          { icon: Activity, title: "Exchange Security", body: "Enable 2FA with a hardware key or authenticator app (not SMS). Whitelist withdrawal addresses. Use unique, strong passwords." },
-          { icon: Globe, title: "Privacy Hygiene", body: "Use separate wallets for different activities. Don't post holdings publicly. Blockchain data is permanently public." },
+          { icon: Lock, accent: true, title: "Portefeuilles Matériels", body: "Ledger, Trezor, Coldcard - pour toute détention valant la peine d'être protégée, un portefeuille matériel est non négociable. Les clés privées ne touchent jamais Internet." },
+          { icon: Shield, title: "Sécurité de la Phrase de Récupération", body: "Votre phrase de 12/24 mots est la clé maîtresse. Stockez-la sur du métal, dans plusieurs emplacements physiques, jamais numériquement." },
+          { icon: Zap, title: "Multi-Signature", body: "Exigez plusieurs clés pour autoriser les transactions. Un multisig 2 sur 3 ou 3 sur 5 élimine les points de défaillance uniques." },
+          { icon: AlertTriangle, title: "Défense contre le Phishing", body: "Vérifiez les URL de manière obsessionnelle. Mettez les sites officiels en favoris. Ne cliquez jamais sur les liens crypto dans les e-mails, les DM ou les publicités." },
+          { icon: Activity, title: "Sécurité des Échanges", body: "Activez la 2FA avec une clé matérielle ou une application d'authentification (pas de SMS). Mettez en liste blanche les adresses de retrait. Utilisez des mots de passe uniques et forts." },
+          { icon: Globe, title: "Hygiène de Confidentialité", body: "Utilisez des portefeuilles séparés pour différentes activités. Ne publiez pas vos avoirs. Les données de la blockchain sont définitivement publiques." },
         ].map((c, i) => (
           <Reveal key={c.title} delay={i * 0.05}>
             <EduCard {...c} />
@@ -834,14 +834,14 @@ function SecuritySection() {
 /* ================ SECTION: FAQ ================ */
 function FaqSection() {
   const faqs = [
-    { q: "Is cryptocurrency legal?", a: "In most jurisdictions, yes - cryptocurrency is legal to hold and trade. Regulations vary significantly by country, particularly around exchanges, taxes, and stablecoins. Always consult local regulation." },
-    { q: "How are crypto gains taxed?", a: "Most jurisdictions treat crypto as property for tax purposes. Sales and swaps trigger capital gains events. Mining and staking rewards are typically income. Record all transactions." },
-    { q: "What is the safest way to store crypto?", a: "A hardware wallet (cold storage) is the gold standard. For large amounts, consider multi-signature schemes with keys distributed across locations." },
-    { q: "How much should I invest in crypto?", a: "A widely cited range is 1–10% of investable assets for conservative investors, up to 20% for those with high risk tolerance and long time horizons. Never invest more than you can afford to lose entirely." },
-    { q: "What's the difference between Bitcoin and Ethereum?", a: "Bitcoin is digital gold - a store of value with a fixed 21M supply. Ethereum is programmable money - a decentralised computing platform that powers DeFi, NFTs, and smart contracts." },
-    { q: "Is DeFi safe?", a: "DeFi carries significant risks: smart contract exploits, oracle manipulation, rug pulls, and regulatory uncertainty. Only use audited protocols, diversify exposure, and never deposit more than you can afford to lose." },
-    { q: "What is a crypto ETF?", a: "An exchange-traded fund that holds crypto assets or futures, traded on traditional stock exchanges. Bitcoin spot ETFs launched in the US in 2024, enabling exposure without self-custody." },
-    { q: "How do I evaluate an altcoin?", a: "Assess: token utility and economics, team credentials and track record, on-chain adoption metrics, competitive landscape, liquidity, and regulatory risk. Most altcoins fail - apply extreme scrutiny." },
+    { q: "La cryptomonnaie est-elle légale ?", a: "Dans la plupart des juridictions, oui - il est légal de détenir et d'échanger de la cryptomonnaie. Les réglementations varient considérablement d'un pays à l'autre, en particulier concernant les échanges, les taxes et les stablecoins. Consultez toujours la réglementation locale." },
+    { q: "Comment les gains cryptographiques sont-ils imposés ?", a: "La plupart des juridictions considèrent la crypto comme un bien à des fins fiscales. Les ventes et les échanges déclenchent des plus-values. Les récompenses de minage et de staking sont généralement des revenus. Enregistrez toutes vos transactions." },
+    { q: "Quelle est la manière la plus sûre de stocker la crypto ?", a: "Un portefeuille matériel (stockage à froid) est la référence absolue. Pour les gros montants, envisagez des systèmes multi-signatures avec des clés réparties sur plusieurs sites." },
+    { q: "Combien devrais-je investir dans la crypto ?", a: "Une fourchette largement citée est de 1 à 10 % des actifs investissables pour les investisseurs prudents, et jusqu'à 20 % pour ceux ayant une forte tolérance au risque et un horizon à long terme. N'investissez jamais plus que ce que vous pouvez vous permettre de perdre." },
+    { q: "Quelle est la différence entre Bitcoin et Ethereum ?", a: "Bitcoin est de l'or numérique - une réserve de valeur avec une offre fixe de 21 millions. Ethereum est de la monnaie programmable - une plateforme informatique décentralisée qui alimente la DeFi, les NFT et les contrats intelligents." },
+    { q: "La DeFi est-elle sûre ?", a: "La DeFi comporte des risques importants : piratage de contrats intelligents, manipulation d'oracles, retraits de liquidité (rug pulls) et incertitude réglementaire. Utilisez uniquement des protocoles audités, diversifiez votre exposition et ne déposez jamais plus que ce que vous pouvez perdre." },
+    { q: "Qu'est-ce qu'un ETF crypto ?", a: "Un fonds négocié en bourse qui détient des actifs cryptographiques ou des contrats à terme, négocié sur les bourses traditionnelles. Les ETF Bitcoin au comptant ont été lancés aux États-Unis en 2024, permettant une exposition sans auto-conservation." },
+    { q: "Comment évaluer un altcoin ?", a: "Évaluez : l'utilité et l'économie du jeton, les références de l'équipe, l'adoption on-chain, le paysage concurrentiel, la liquidité et le risque réglementaire. La plupart des altcoins échouent - appliquez une extrême prudence." },
   ];
   const [open, setOpen] = useState<number | null>(0);
 
@@ -849,9 +849,9 @@ function FaqSection() {
     <SectionWrap>
       <SectionHeader
         num="10"
-        label="Frequently Asked Questions"
-        title={<>The questions<span className="italic text-gold"> every investor asks.</span></>}
-        sub="Answers grounded in reality, not marketing. If your question isn't here, contact our concierge desk below."
+        label="Foire Aux Questions"
+        title={<>Les questions<span className="italic text-gold"> de chaque investisseur.</span></>}
+        sub="Des réponses ancrées dans la réalité, pas dans le marketing. Si votre question ne figure pas ici, contactez notre service de conciergerie ci-dessous."
       />
 
       <div className="mt-12 divide-y divide-white/10 border-y border-white/10">
@@ -922,12 +922,12 @@ function LoggedInContactForm() {
 
       if (res.ok && data.success) {
         setSuccess(true);
-        toast.success("Enquiry received!");
+        toast.success("Demande reçue !");
       } else {
-        toast.error(data.error ?? "Failed to send. Please try again.");
+        toast.error(data.error ?? "Échec de l'envoi. Veuillez réessayer.");
       }
     } catch {
-      toast.error("Network error. Please check your connection.");
+      toast.error("Erreur réseau. Veuillez vérifier votre connexion.");
     } finally {
       setSubmitting(false);
     }
@@ -939,13 +939,13 @@ function LoggedInContactForm() {
         <Reveal>
           <div className="grid gap-16 lg:grid-cols-[1fr_1.2fr]">
             <div>
-              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-gold">Concierge Desk</span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-gold">Service de Conciergerie</span>
               <h2 className="font-display mt-6 text-4xl font-light leading-tight sm:text-5xl">
-                Have questions about your investment journey?
+                Des questions sur votre parcours d'investissement ?
               </h2>
               <p className="mt-6 text-white/60">
-                Our dedicated team responds within two hours, every day of the year.
-                Share your enquiry and we'll provide tailored guidance.
+                Notre équipe dédiée vous répond dans les deux heures, tous les jours de l'année.
+                Partagez votre demande et nous vous fournirons des conseils sur mesure.
               </p>
             </div>
 
@@ -956,10 +956,10 @@ function LoggedInContactForm() {
                 className="flex flex-col items-center justify-center rounded-[28px] border border-gold/20 bg-gold/5 p-12 text-center"
               >
                 <CheckCircle2 className="size-12 text-gold" />
-                <h3 className="font-display mt-6 text-2xl">Enquiry received.</h3>
+                <h3 className="font-display mt-6 text-2xl">Demande reçue.</h3>
                 <p className="mt-3 text-white/60">
-                  Thank you! Your enquiry has been received successfully.
-                  We'll be in touch within two hours.
+                  Merci ! Votre demande a été reçue avec succès.
+                  Nous vous contacterons dans les deux heures.
                 </p>
               </motion.div>
             ) : (
@@ -968,7 +968,7 @@ function LoggedInContactForm() {
                   <div>
                     <input
                       type="text"
-                      placeholder="Full name"
+                      placeholder="Nom complet"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       className="w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white outline-none placeholder:text-white/30 transition focus:border-gold/60 focus:bg-white/[0.06]"
@@ -978,7 +978,7 @@ function LoggedInContactForm() {
                   <div>
                     <input
                       type="email"
-                      placeholder="Email address"
+                      placeholder="Adresse e-mail"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       className="w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white outline-none placeholder:text-white/30 transition focus:border-gold/60 focus:bg-white/[0.06]"
@@ -989,7 +989,7 @@ function LoggedInContactForm() {
                 <div>
                   <input
                     type="tel"
-                    placeholder="Phone number"
+                    placeholder="Numéro de téléphone"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     className="w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white outline-none placeholder:text-white/30 transition focus:border-gold/60 focus:bg-white/[0.06]"
@@ -997,7 +997,7 @@ function LoggedInContactForm() {
                   {errors.phone && <p className="mt-1 text-xs text-red-400">{errors.phone}</p>}
                 </div>
                 <textarea
-                  placeholder="Message (optional)"
+                  placeholder="Message (facultatif)"
                   rows={4}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
@@ -1011,12 +1011,12 @@ function LoggedInContactForm() {
                   {submitting ? (
                     <>
                       <span className="h-4 w-4 animate-spin rounded-full border-2 border-ink/30 border-t-ink" />
-                      Sending…
+                      Envoi...
                     </>
                   ) : (
                     <>
                       <Send className="size-4" />
-                      Send enquiry
+                      Envoyer la demande
                     </>
                   )}
                 </button>
@@ -1040,9 +1040,9 @@ function LearnFooter() {
             <span className="font-display text-lg">Nova Ledger</span>
           </div>
           <div className="flex flex-wrap items-center gap-6 font-mono text-[11px] uppercase tracking-[0.2em] text-white/40">
-            <a href="/" className="story-link hover:text-white">Home</a>
-            <a href="/privacy" className="story-link hover:text-white">Privacy Policy</a>
-            <a href="/terms" className="story-link hover:text-white">Terms & Conditions</a>
+            <a href="/" className="story-link hover:text-white">Accueil</a>
+            <a href="/privacy" className="story-link hover:text-white">Confidentialité</a>
+            <a href="/terms" className="story-link hover:text-white">Conditions</a>
           </div>
           <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/30">
             © 2026 Nova Ledger Holdings
