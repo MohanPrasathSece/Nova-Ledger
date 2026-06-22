@@ -9,6 +9,7 @@ const links = [
   { label: "Security", href: "/#security" },
   { label: "Journal", href: "/#journal" },
   { label: "FAQ", href: "/#faq" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export function Nav({

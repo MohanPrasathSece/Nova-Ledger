@@ -902,9 +902,6 @@ function LoggedInContactForm() {
 
   function validate() {
     const errs: Record<string, string> = {};
-    if (!name.trim()) errs.name = "Name is required.";
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errs.email = "Valid email is required.";
-    if (!phone || !/^[+\d\s\-().]{6,20}$/.test(phone)) errs.phone = "Valid phone number is required.";
     return errs;
   }
 

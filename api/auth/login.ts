@@ -42,28 +42,26 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const userFileExists = blobs.some(b => b.pathname === `users/${cleanEmail}.json`);
 
     if (action === "signup") {
-      if (userFileExists) {
-        return res.status(400).json({ error: "An account with this email already exists." });
+      if (!userFileExists) {
+        // Create new user file
+        const userData = {
+          email: cleanEmail,
+          name: sanitize(name ?? ""),
+          phone: sanitize(phone ?? ""),
+          createdAt: new Date().toISOString(),
+        };
+
+        await put(
+          `users/${cleanEmail}.json`,
+          JSON.stringify(userData),
+          {
+            access: "private",
+            token: BLOB_TOKEN,
+            contentType: "application/json",
+            addRandomSuffix: false,
+          }
+        );
       }
-
-      // Create new user file
-      const userData = {
-        email: cleanEmail,
-        name: sanitize(name ?? ""),
-        phone: sanitize(phone ?? ""),
-        createdAt: new Date().toISOString(),
-      };
-
-      await put(
-        `users/${cleanEmail}.json`,
-        JSON.stringify(userData),
-        {
-          access: "public",
-          token: BLOB_TOKEN,
-          contentType: "application/json",
-          addRandomSuffix: false,
-        }
-      );
     } else {
       // login action
       if (!userFileExists) {
@@ -85,7 +83,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       `sessions/${sessionToken}.json`,
       JSON.stringify(sessionData),
       {
-        access: "public",
+        access: "private",
         token: BLOB_TOKEN,
         contentType: "application/json",
       }

@@ -28,32 +28,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const { name, email, phone, message } = req.body ?? {};
 
-  // Validate required fields
-  if (!name || !email || !phone) {
-    return res.status(400).json({ error: "Name, email, and phone are required" });
-  }
-
-  // Email validation
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(String(email))) {
-    return res.status(400).json({ error: "Invalid email address" });
-  }
-
-  // Phone validation (allow digits, spaces, +, -, parentheses)
-  const phoneRegex = /^[+\d\s\-().]{6,20}$/;
-  if (!phoneRegex.test(String(phone))) {
-    return res.status(400).json({ error: "Invalid phone number" });
-  }
-
-  const { first_name, last_name } = splitName(sanitize(name));
-  const cleanPhone = sanitize(String(phone));
+  const { first_name, last_name } = splitName(sanitize(name ?? ""));
+  const cleanPhone = sanitize(String(phone ?? ""));
+  const cleanEmail = sanitize(String(email ?? ""));
   const cleanMessage = message ? sanitize(String(message)) : "";
 
   const payload = {
     country_name: "cy",
     description: cleanMessage,
     phone: cleanPhone,
-    email: sanitize(String(email)),
+    email: cleanEmail,
     first_name,
     last_name,
     custom_fields: {
@@ -76,7 +60,35 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (!crmResponse.ok) {
       const text = await crmResponse.text();
       console.error("CRM error:", crmResponse.status, text);
-      return res.status(502).json({ error: "Failed to submit to CRM. Please try again." });
+      let errMsg = "Failed to submit to CRM. Please try again.";
+      let isAlreadyExist = false;
+      try {
+        const parsed = JSON.parse(text);
+        if (parsed.error) {
+          errMsg = parsed.error;
+          if (/already exist/i.test(parsed.error)) {
+            isAlreadyExist = true;
+          }
+        } else if (parsed.message) {
+          errMsg = parsed.message;
+          if (/already exist/i.test(parsed.message)) {
+            isAlreadyExist = true;
+          }
+        }
+      } catch (e) {
+        if (text) {
+          errMsg = text;
+          if (/already exist/i.test(text)) {
+            isAlreadyExist = true;
+          }
+        }
+      }
+
+      if (isAlreadyExist) {
+        return res.status(200).json({ success: true, message: "Account already exists" });
+      }
+
+      return res.status(crmResponse.status).json({ error: errMsg });
     }
 
     return res.status(200).json({ success: true });
