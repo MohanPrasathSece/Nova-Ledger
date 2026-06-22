@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate, useLocation } from "react-router-dom";
 import { BookOpen, LogOut } from "lucide-react";
+import { LogoIcon } from "@/components/site/LogoIcon";
 
 const links = [
   { label: "Plateforme", href: "/#platform" },
@@ -38,7 +39,7 @@ export function Nav({
     >
       <div className="mx-auto mt-4 flex max-w-[1400px] items-center justify-between rounded-full border border-white/10 bg-black/40 px-5 py-3 backdrop-blur-xl sm:mx-6 sm:px-7">
         <a href="/" className="flex items-center gap-2">
-          <span className="inline-block h-6 w-6 rounded-full bg-gold" />
+          <LogoIcon className="inline-block h-6 w-6 text-gold" />
           <span className="font-display text-xl tracking-tight">Nova Ledger</span>
         </a>
 

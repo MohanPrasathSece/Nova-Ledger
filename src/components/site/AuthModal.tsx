@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { LogoIcon } from "@/components/site/LogoIcon";
 
 export type AuthMode = "signin" | "signup";
 
@@ -65,7 +66,7 @@ export function AuthModal({
               <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-white/30 blur-3xl" />
               <div className="relative">
                 <div className="flex items-center gap-2">
-                  <span className="inline-block h-6 w-6 rounded-full bg-ink" />
+                  <LogoIcon className="inline-block h-6 w-6 text-ink" />
                   <span className="font-display text-xl">Nova Ledger</span>
                 </div>
                 <h3 className="font-display mt-12 text-4xl font-light leading-[1.05] tracking-tight">

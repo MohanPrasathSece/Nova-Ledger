@@ -20,6 +20,7 @@ import { Nav } from "@/components/site/Nav";
 import { Counter } from "@/components/site/Counter";
 import { Reveal } from "@/components/site/Reveal";
 import { Dashboard } from "@/components/site/Dashboard";
+import { LogoIcon } from "@/components/site/LogoIcon";
 import { AuthModal, type AuthMode } from "@/components/site/AuthModal";
 import heroCoin from "@/assets/hero-coin.jpg";
 import chartArt from "@/assets/chart-art.jpg";
@@ -842,7 +843,7 @@ function Footer() {
         <div className="mt-12 grid gap-12 border-t border-white/10 pt-12 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2">
-              <span className="inline-block h-6 w-6 rounded-full bg-gold" />
+              <LogoIcon className="inline-block h-6 w-6 text-gold" />
               <span className="font-display text-xl">Nova Ledger</span>
             </div>
             <p className="mt-4 max-w-xs text-sm text-white/50">
