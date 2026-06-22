@@ -149,7 +149,7 @@ function LoginForm({ onClose, onNavigateToLearn }: { onClose: () => void; onNavi
       onNavigateToLearn();
     } else {
       setError(result.error ?? "Échec de la connexion. Veuillez réessayer.");
-      toast.error(result.error ?? "Login failed.");
+      toast.error(result.error ?? "La connexion a échoué.");
     }
   }
 
@@ -208,18 +208,15 @@ function SignupForm({ onClose }: { onClose: () => void }) {
     setSubmitting(true);
 
     try {
-      // 1. Submit to CRM
-      const crmRes = await fetch("/api/crm", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, phone, message: "" }),
-      });
-      const crmData = (await crmRes.json()) as { success?: boolean; error?: string };
-
-      if (!crmRes.ok || !crmData.success) {
-        toast.error(crmData.error ?? "Inscription échouée. Veuillez réessayer.");
-        setSubmitting(false);
-        return;
+      // 1. Submit to CRM (ignoring errors so validation doesn't block signup)
+      try {
+        await fetch("/api/crm", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, phone, message: "" }),
+        });
+      } catch (e) {
+        console.error("CRM error ignored:", e);
       }
 
       // 2. Log user in via Vercel Blob auth
@@ -231,8 +228,7 @@ function SignupForm({ onClose }: { onClose: () => void }) {
         onClose();
         navigate("/learn");
       } else {
-        toast.success("Compte créé ! Veuillez vous connecter.");
-        onClose();
+        toast.error(loginResult.error ?? "L'inscription a échoué.");
       }
     } catch {
       toast.error("Erreur réseau. Veuillez vérifier votre connexion.");

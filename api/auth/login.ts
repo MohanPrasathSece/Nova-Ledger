@@ -16,12 +16,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const { email, action = "login", name, phone } = req.body ?? {};
 
   if (!email) {
-    return res.status(400).json({ error: "Email is required" });
+    return res.status(400).json({ error: "L'adresse e-mail est requise." });
   }
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(String(email))) {
-    return res.status(400).json({ error: "Invalid email address" });
+    return res.status(400).json({ error: "L'adresse e-mail est invalide." });
   }
 
   const cleanEmail = sanitize(String(email)).toLowerCase();
@@ -67,7 +67,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     } else {
       // login action
       if (!userFileExists) {
-        return res.status(400).json({ error: "No account found with this email. Please sign up first." });
+        return res.status(400).json({ error: "Aucun compte trouvé avec cet e-mail. Veuillez vous inscrire d'abord." });
       }
     }
 
@@ -98,6 +98,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     });
   } catch (err) {
     console.error("Blob auth error:", err);
-    return res.status(500).json({ error: "Authentication database query failed. Please try again." });
+    return res.status(500).json({ error: "Erreur de connexion à la base de données. Veuillez réessayer." });
   }
 }

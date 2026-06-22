@@ -49,7 +49,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const data = (await res.json()) as { success?: boolean; token?: string; email?: string; error?: string };
 
       if (!res.ok || !data.success || !data.token) {
-        return { success: false, error: data.error ?? "Login failed. Please try again." };
+        return { success: false, error: data.error ?? "La connexion a échoué. Veuillez réessayer." };
       }
 
       const session: User = { email: data.email ?? email, token: data.token };
@@ -57,7 +57,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       localStorage.setItem(SESSION_KEY, JSON.stringify(session));
       return { success: true };
     } catch {
-      return { success: false, error: "Network error. Please check your connection." };
+      return { success: false, error: "Erreur réseau. Veuillez vérifier votre connexion." };
     }
   }
 
