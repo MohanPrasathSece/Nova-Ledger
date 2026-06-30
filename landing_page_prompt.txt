@@ -1,0 +1,128 @@
+You are an Expert Staff Frontend Engineer, UI/UX Designer, and React/Tailwind/Framer Motion specialist. Your task is to build a pixel-perfect, premium, high-end landing page for "Nova Ledger", a luxury crypto wealth management platform (analogous to a private Swiss bank for digital assets).
+
+Your output must be production-ready code. You must implement every single detail, animation, and responsive behavior described in this document.
+
+### 1. TECH STACK & CONFIGURATION
+You must use the following technologies:
+- React 19 (or Next.js App Router)
+- Vite (if using React directly)
+- Tailwind CSS v4 (for all styling)
+- Framer Motion v12 (for scroll, spring, hover, and SVG path animations)
+- Lucide React (for all iconography)
+
+### 2. DESIGN SYSTEM & AESTHETIC
+The aesthetic must scream "Old Money meets Web3". It is highly editorial, discrete, and meticulously polished. 
+
+**Colors:**
+- Background Dark (`bg-ink`): A very deep, rich black (e.g., `#0a0a0a` or `#0f0f0f`).
+- Background Light (`bg-bone`): A warm, creamy off-white (e.g., `#f7f5f0`).
+- Accent Gold (`bg-gold`, `text-gold`): A muted, elegant gold (e.g., `#d4af37` or `#c5a059`).
+- Text/Borders on Dark: White with varying opacities (`text-white/60`, `border-white/10`).
+- Text/Borders on Light: Ink with varying opacities (`text-ink/60`, `border-ink/10`).
+
+**Typography:**
+- **Display Font (`font-display`)**: An elegant, thin, high-end serif or a very sleek sans-serif. It must be used with `font-light` and `tracking-tight` (negative letter spacing) for massive headings.
+- **Mono Font (`font-mono`)**: A clean monospace font used exclusively for subheadings, section numbers, and small tags. It must ALWAYS be styled as: `text-[11px] uppercase tracking-[0.25em]`.
+
+### 3. EXHAUSTIVE ANIMATION SYSTEM (Framer Motion)
+Animations are the absolute core of this project. They must feel physical, fluid, and highly polished. Implement the following exactly:
+
+**A. The "Reveal" Wrapper Component (Scroll Triggered Fades)**
+Every major text block and grid item must be wrapped in a `<Reveal>` component that handles scroll-triggered entrance animations.
+- Setup: Use `initial={{ opacity: 0, y: 20 }}` and `whileInView={{ opacity: 1, y: 0 }}`.
+- Viewport: `viewport={{ once: true, margin: "-40px" }}`.
+- Transition: `transition={{ duration: 0.9, delay: props.delay || 0, ease: [0.22, 1, 0.36, 1] }}`.
+- Grid Items: When rendering maps/grids, pass a staggered delay: `<Reveal delay={index * 0.05}>`.
+
+**B. Scroll Parallax (Hero Section)**
+Use `useScroll` and `useTransform` mapped to a container ref for background and foreground parallax.
+- `const ref = useRef(null);`
+- `const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });`
+- Dashboard element moving UP: `const dashY = useTransform(scrollYProgress, [0, 1], [0, 160]);`
+- Floating coin element moving UP (negative Y): `const coinY = useTransform(scrollYProgress, [0, 1], [0, -120]);`
+- Apply to `motion.div` and `motion.img` via `style={{ y: dashY }}`.
+
+**C. Hover Springs (Cards and Images)**
+Use physics-based springs for interactions, avoiding linear or standard ease tweens.
+- Standard Card Hover (Lift up): `whileHover={{ y: -6 }}` or `whileHover={{ y: -8 }}`.
+- Standard Image Hover (Scale up): `whileHover={{ scale: 1.02 }}`.
+- Slide Hover (List items): `whileHover={{ x: 6 }}`.
+- **The Spring Physics**: Every hover must use `transition={{ type: "spring", stiffness: 200, damping: 20 }}` (for Y/X movement) or `stiffness: 150` for scaling.
+
+**D. SVG Path Drawing (Sparkline Charts)**
+For the market line charts, the path must draw itself when entering the viewport.
+- `<motion.path d="..." fill="none" stroke="currentColor" strokeWidth="1.5" />`
+- Animation props: `initial={{ pathLength: 0 }}`, `whileInView={{ pathLength: 1 }}`.
+- Viewport: `viewport={{ once: true }}`.
+- Transition: `transition={{ duration: 1.6, ease: "easeInOut" }}`.
+
+**E. AnimatePresence & Height Animations (FAQ Accordion)**
+- `<motion.div initial={false} animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }} className="overflow-hidden">`
+
+### 4. PAGE SECTIONS & STRUCTURE
+Build the landing page exactly in this order, integrating the animations defined above into every section.
+
+#### A. Hero Section (Dark Mode - `bg-ink`)
+- **Background**: Ambient radial glow `bg-[radial-gradient(closest-side,rgba(233,216,74,0.14),transparent_70%)] blur-2xl`.
+- **Floating Parallax Image**: Large abstract golden coin on the right. Mix-blend mode `screen`, opacity `40-60%`. Controlled by `coinY` parallax (see Animations B).
+- **Hero Text**:
+  - Pill Tag: `[Gold Dot] Numéro Nº 014 · Hiver 2026`. `initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}`.
+  - Heading: "Un nouveau standard [line break, italicized gold] pour l'investissement crypto." `initial={{ opacity: 0, y: 30, filter: "blur(10px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: 1.1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}`.
+  - Subtitle: Fades in with `y: 20` and `delay: 0.45`.
+  - Buttons: Fade in with `delay: 0.6`. Hovering the primary button slightly scales it `hover:scale-[1.03]` and translates its Arrow icon `group-hover:translate-x-0.5 group-hover:-translate-y-0.5`.
+- **Dashboard Image**: A dashboard mockup below the text that is wrapped in a `motion.div style={{ y: dashY }}` (see Animations B).
+
+#### B. Marquee Section (Dark Mode)
+- Infinite scrolling CSS or Framer Motion ticker.
+- Content: "Bitcoin · 67,420.10 · +1.8%   [GOLD DOT]   Ethereum · 3,842.55 · +2.4%   [GOLD DOT]   AUM · $4.2B..."
+- Font: `font-mono text-xs uppercase tracking-[0.25em] text-white/40`.
+
+#### C. Stats Counters (Dark Mode)
+- 4-column grid. Each item wrapped in `<Reveal delay={i * 0.08}>`.
+- Stats: $4.2B, 320,000+, 142, $812M.
+- Must implement a `<Counter>` component using `framer-motion`'s `useSpring` and `useTransform` to count from 0 to the target value when visible.
+
+#### D. Feature Grid (Light Mode - `bg-bone`)
+- **Layout**: CSS Grid `lg:grid-cols-[1fr_1.4fr]`. Left column sticky.
+- **Right Column Cards**: 6 cards wrapped in `<Reveal delay={i * 0.05}>`.
+- **Card Micro-interaction**: The card itself uses `whileHover={{ y: -6 }}` (Spring stiffness 200). Inside the card, a dark box containing the icon uses CSS `group-hover:rotate-6` for a subtle tilt.
+
+#### E. Showcase (Dark Mode - `bg-ink`)
+- Alternating text/image layouts. All blocks wrapped in `<Reveal>`.
+- **Images**: Wrapped in `<motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 150, damping: 20 }}>`.
+- **The Vault Card**: Large solid gold card. Grid at the bottom for specs (Assurance, Audit, Uptime).
+
+#### F. Live Markets (Light Mode - `bg-bone`)
+- Header wrapped in `<Reveal>`.
+- 3 columns of market cards (BTC, ETH, SOL...). Each card wrapped in `<Reveal delay={i * 0.05}>`.
+- **Card Micro-interaction**: `motion.div` with `whileHover={{ y: -8 }}` (Spring stiffness 200). Deep shadow on hover.
+- **Sparkline SVG**: Uses the exact SVG path drawing animation detailed in section 3D.
+
+#### G. Security Section (Dark Mode - `bg-ink`)
+- Left: Vault image in a glass container. Container uses `whileHover={{ scale: 1.02, rotate: -1 }}` (Spring stiffness 100). Wrapped in `<Reveal>`.
+- Right: 2x2 grid of small feature pills with gold icons. Each pill wrapped in `<Reveal delay={idx * 0.05}>`.
+
+#### H. Journal / Blog (Light Mode - `bg-bone`)
+- Left (Featured): `motion.article whileHover={{ y: -6 }}`. Inner image has `group-hover:scale-105` (CSS transition duration-700).
+- Right (List): 4 cards. Each wrapped in `<Reveal delay={i * 0.05}>`.
+- **List Card Micro-interaction**: `motion.article whileHover={{ x: 6 }}`. The `ArrowUpRight` icon uses CSS `transition group-hover:rotate-45 group-hover:text-gold`.
+
+#### I. Testimonials (Dark Mode - `bg-ink`)
+- 3 columns. Each wrapped in `<Reveal delay={i * 0.08}>`.
+- **Card Micro-interaction**: `motion.figure whileHover={{ y: -6 }}`.
+
+#### J. FAQ Accordion (Light Mode - `bg-bone`)
+- Left column wrapped in `<Reveal>`.
+- Accordion Items: Clicking a button sets `isOpen`.
+- **Accordion Animation**: The expanded text container uses the exact `motion.div` height animation detailed in section 3E.
+
+#### K. Contact & Form (Dark Mode - `bg-ink`)
+- Inputs: CSS transitions on focus for borders (`focus:border-gold/60`).
+- Submit Button: Replaces content with a spinning loader on submit.
+- **Success State**: When form succeeds, form is hidden and the success message uses `<motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>`.
+
+### 5. EXECUTION RULES
+- Provide the complete, structured code. Do not use placeholders for the styling logic.
+- Ensure all Framer Motion imports are `import { motion, useScroll, ... } from "framer-motion";` or `from "motion/react";`.
+- Pay extreme attention to the Tailwind classes provided in this prompt (e.g., `text-balance`, `grain`, `blur-2xl`, spring transitions).
+- Make sure mobile responsiveness is flawless. Use `px-6`, `sm:grid-cols-2`, `lg:grid-cols-X` extensively.

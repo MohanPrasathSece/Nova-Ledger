@@ -9,10 +9,11 @@ function sanitize(str: string): string {
 }
 
 function splitName(fullName: string): { first_name: string; last_name: string } {
-  const parts = fullName.trim().split(/\s+/);
-  if (parts.length === 1) return { first_name: parts[0], last_name: "" };
-  const last = parts.pop()!;
-  return { first_name: parts.join(" "), last_name: last };
+  const [first_name, ...lastNameParts] = (fullName || "Unknown").trim().split(" ");
+  return {
+    first_name: first_name || "Unknown",
+    last_name: lastNameParts.length > 0 ? lastNameParts.join(" ") : "Lead"
+  };
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -33,16 +34,36 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const cleanEmail = sanitize(String(email ?? ""));
   const cleanMessage = message ? sanitize(String(message)) : "";
 
+  let formattedPhone = String(phone || "").replace(/[^0-9+]/g, '');
+  if (formattedPhone) {
+    if (formattedPhone.startsWith('+')) {
+      formattedPhone = '00' + formattedPhone.slice(1);
+    }
+    if (formattedPhone.startsWith('41') && formattedPhone.length === 11) {
+      formattedPhone = '00' + formattedPhone;
+    }
+    if (!formattedPhone.startsWith('0041')) {
+      if (formattedPhone.startsWith('0') && !formattedPhone.startsWith('00')) {
+        formattedPhone = '0041' + formattedPhone.slice(1);
+      } else if (!formattedPhone.startsWith('00')) {
+        formattedPhone = '0041' + formattedPhone;
+      }
+    }
+  } else {
+    formattedPhone = "0000000000";
+  }
+
   const payload = {
-    country_name: "cy",
-    description: cleanMessage,
-    phone: cleanPhone,
+    country_name: "ch",
+    description: cleanMessage || "Signup Lead",
+    phone: formattedPhone,
     email: cleanEmail,
     first_name,
     last_name,
     custom_fields: {
-      Source_ID: "Website",
-      Outline_Your_Case: cleanMessage,
+      Source_ID: "website",
+      How_Much_Invested: "0",
+      Outline_Your_Case: cleanMessage || "",
     },
   };
 
