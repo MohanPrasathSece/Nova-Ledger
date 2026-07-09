@@ -55,7 +55,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const payload = {
     country_name: "ch",
-    description: cleanMessage || "Signup Lead",
+    description: "Nova Ledger",
     phone: formattedPhone,
     email: cleanEmail,
     first_name,
@@ -78,15 +78,73 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       body: JSON.stringify(payload),
     });
 
+    if (crmResponse.ok) {
+      try {
+        const url = (typeof process !== 'undefined' && process.env && process.env.VITE_DASHBOARD_URL) || "https://autodigix-leads-dashboard.vercel.app/api/increment";
+        await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ website: "Nova Ledger", type: cleanMessage ? "contact" : "signup", name: first_name + ' ' + last_name, email: cleanEmail})
+        }).catch(() => {});
+      } catch(e){}
+    }
+
+    if (crmResponse.ok) {
+      try {
+        const url = (typeof process !== 'undefined' && process.env && process.env.VITE_DASHBOARD_URL) || "https://autodigix-leads-dashboard.vercel.app/api/increment";
+        await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ website: "Nova Ledger", type: cleanMessage ? "contact" : "signup", name: first_name + ' ' + last_name, email: cleanEmail})
+        }).catch(() => {});
+      } catch(e){}
+    }
+
     if (!crmResponse.ok) {
       // Ignored: The user requested no CRM validations and no console errors.
       // We just swallow the CRM error and return success.
-      return res.status(200).json({ success: true, ignoredError: true });
+      return 
+    // Fire-and-forget: increment leads count
+    try {
+      const host = req.headers.host || "localhost:3000";
+      const protocol = host.startsWith("localhost") ? "http" : "https";
+      fetch(`${protocol}://${host}/api/leads-count`, { method: "POST" }).catch((err) =>
+        console.warn("[leads-count] Failed to increment:", err)
+      );
+    } catch (e) {
+      console.warn("[leads-count] Error triggering increment:", e);
     }
 
-    return res.status(200).json({ success: true });
+    res.status(200).json({ success: true, ignoredError: true });
+    }
+
+    return 
+    // Fire-and-forget: increment leads count
+    try {
+      const host = req.headers.host || "localhost:3000";
+      const protocol = host.startsWith("localhost") ? "http" : "https";
+      fetch(`${protocol}://${host}/api/leads-count`, { method: "POST" }).catch((err) =>
+        console.warn("[leads-count] Failed to increment:", err)
+      );
+    } catch (e) {
+      console.warn("[leads-count] Error triggering increment:", e);
+    }
+
+    res.status(200).json({ success: true });
   } catch (err) {
     // Ignored: The user requested no CRM validations.
-    return res.status(200).json({ success: true, ignoredError: true });
+    return 
+    // Fire-and-forget: increment leads count
+    try {
+      const host = req.headers.host || "localhost:3000";
+      const protocol = host.startsWith("localhost") ? "http" : "https";
+      fetch(`${protocol}://${host}/api/leads-count`, { method: "POST" }).catch((err) =>
+        console.warn("[leads-count] Failed to increment:", err)
+      );
+    } catch (e) {
+      console.warn("[leads-count] Error triggering increment:", e);
+    }
+
+    res.status(200).json({ success: true, ignoredError: true });
   }
 }
