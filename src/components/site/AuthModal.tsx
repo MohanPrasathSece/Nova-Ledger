@@ -223,6 +223,14 @@ function SignupForm({ onClose }: { onClose: () => void }) {
           body: JSON.stringify({ name, email, phone, message: "" }),
         });
       } catch (e) {
+      const rawMsg = (e?.message || e?.toString() || "");
+      if (rawMsg.toLowerCase().includes("already exist") || rawMsg.toLowerCase().includes("already exists")) {
+        toast.error("Account already exists");
+        if (typeof setError === 'function') setError("Account already exists");
+        setLoading(false);
+        return;
+      }
+
         console.error("CRM error ignored:", e);
       }
 
