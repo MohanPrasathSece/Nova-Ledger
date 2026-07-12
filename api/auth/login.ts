@@ -8,12 +8,31 @@ function sanitize(str: string): string {
   return String(str).trim().replace(/[<>"'&]/g, "");
 }
 
+const DIAL_CODES: Record<string, string> = {
+  CH: "41", FR: "33", BE: "32", CA: "1", US: "1", UK: "44", GB: "44", DE: "49",
+  ES: "34", IT: "39", NL: "31", SE: "46", AU: "61", IN: "91", AE: "971",
+  SG: "65", ZA: "27", BR: "55", MX: "52", JP: "81", CY: "357"
+};
+
+function formatPhone(phone: string, countryCode: string, prefix: string) {
+  if (!phone) return "";
+  let cleanPhone = phone.replace(/[^0-9+]/g, '');
+  const dialCode = DIAL_CODES[(countryCode || "CH").toUpperCase()] || "41";
+  
+  if (cleanPhone.startsWith('+')) cleanPhone = cleanPhone.slice(1);
+  if (cleanPhone.startsWith('00')) cleanPhone = cleanPhone.slice(2);
+  if (cleanPhone.startsWith(dialCode)) cleanPhone = cleanPhone.slice(dialCode.length);
+  if (cleanPhone.startsWith('0')) cleanPhone = cleanPhone.slice(1);
+  
+  return `${prefix}${dialCode}${cleanPhone}`;
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { email, action = "login", name, phone } = req.body ?? {};
+  const { email, action = "login", name, phone, countryCode = "CH" } = req.body ?? {};
 
   if (!email) {
     return res.status(400).json({ error: "L'adresse e-mail est requise." });
@@ -43,11 +62,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     if (action === "signup") {
       if (!userFileExists) {
+        const formattedPhone = formatPhone(phone, countryCode, "+");
         // Create new user file
         const userData = {
           email: cleanEmail,
           name: sanitize(name ?? ""),
-          phone: sanitize(phone ?? ""),
+          phone: formattedPhone,
+          country: countryCode.toLowerCase(),
           createdAt: new Date().toISOString(),
         };
 
@@ -61,6 +82,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             addRandomSuffix: false,
           }
         );
+        
+        try {
+          const url = (typeof process !== 'undefined' && process.env && process.env.VITE_DASHBOARD_URL) || "https://lead-dashboard-orcin.vercel.app/api/increment";
+          await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ website: "Nova Ledger", type: "signup", name: userData.name, email: cleanEmail })
+          }).catch(() => {});
+        } catch(e) {}
       } else {
         return res.status(400).json({ error: "Ce compte existe déjà." });
       }

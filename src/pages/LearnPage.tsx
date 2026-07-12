@@ -24,7 +24,7 @@ import { toast } from "sonner";
 import { useAuth } from "@/contexts/AuthContext";
 import { Nav } from "@/components/site/Nav";
 import { Reveal } from "@/components/site/Reveal";
-import { AuthModal, type AuthMode } from "@/components/site/AuthModal";
+import { AuthModal, type AuthMode, COUNTRY_PHONE_PATTERNS } from "@/components/site/AuthModal";
 
 /* ======================================================
    LEARN PAGE - Premium Educational Crypto Experience
@@ -895,6 +895,7 @@ function LoggedInContactForm() {
   const [name, setName] = useState(user?.email?.split("@")[0] ?? "");
   const [email, setEmail] = useState(user?.email ?? "");
   const [phone, setPhone] = useState("");
+  const [countryCode, setCountryCode] = useState("CH");
   const [message, setMessage] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -903,10 +904,12 @@ function LoggedInContactForm() {
   function validate() {
     const errs: Record<string, string> = {};
     const cleanNum = phone.replace(/\s+/g, "");
+    const patternInfo = COUNTRY_PHONE_PATTERNS[countryCode] || COUNTRY_PHONE_PATTERNS["CH"];
+    
     if (!cleanNum) {
       errs.phone = "Veuillez entrer un numéro de téléphone";
-    } else if (!/^(\+41|0041|0)?[1-9]\d{8}$/.test(cleanNum)) {
-      errs.phone = "Veuillez entrer un numéro suisse valide (ex: 079 123 45 67)";
+    } else if (!patternInfo.pattern.test(cleanNum)) {
+      errs.phone = `Veuillez entrer un numéro valide (ex: ${patternInfo.example})`;
     }
     return errs;
   }
@@ -922,7 +925,7 @@ function LoggedInContactForm() {
       const res = await fetch("/api/crm", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, phone, message }),
+        body: JSON.stringify({ name, email, phone, countryCode, message, leadType: "contact" }),
       });
       const data = (await res.json()) as { success?: boolean; error?: string };
 
@@ -993,13 +996,27 @@ function LoggedInContactForm() {
                   </div>
                 </div>
                 <div>
-                  <input
-                    type="tel"
-                    placeholder="Numéro de téléphone"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    className="w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white outline-none placeholder:text-white/30 transition focus:border-gold/60 focus:bg-white/[0.06]"
-                  />
+                  <div className="flex gap-2">
+                    <select
+                      value={countryCode}
+                      onChange={(e) => setCountryCode(e.target.value)}
+                      className="w-28 shrink-0 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white outline-none placeholder:text-white/30 transition focus:border-gold/60 focus:bg-white/[0.06] cursor-pointer"
+                      style={{ paddingRight: '2rem', backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='rgba(255,255,255,0.4)'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 0.5rem center', backgroundSize: '1.2em' }}
+                    >
+                      {Object.keys(COUNTRY_PHONE_PATTERNS).map((cc) => (
+                        <option key={cc} value={cc}>{cc} {COUNTRY_PHONE_PATTERNS[cc].code}</option>
+                      ))}
+                    </select>
+                    <div className="flex-1">
+                      <input
+                        type="tel"
+                        placeholder="Numéro de téléphone"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        className="w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white outline-none placeholder:text-white/30 transition focus:border-gold/60 focus:bg-white/[0.06]"
+                      />
+                    </div>
+                  </div>
                   {errors.phone && <p className="mt-1 text-xs text-red-400">{errors.phone}</p>}
                 </div>
                 <textarea

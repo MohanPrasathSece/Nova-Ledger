@@ -8,7 +8,7 @@ interface User {
 interface AuthContextValue {
   user: User | null;
   isAuthenticated: boolean;
-  login: (email: string, action?: "login" | "signup", name?: string, phone?: string) => Promise<{ success: boolean; error?: string }>;
+  login: (email: string, action?: "login" | "signup", name?: string, phone?: string, countryCode?: string) => Promise<{ success: boolean; error?: string }>;
   logout: () => void;
 }
 
@@ -38,13 +38,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     email: string,
     action: "login" | "signup" = "login",
     name?: string,
-    phone?: string
+    phone?: string,
+    countryCode?: string
   ): Promise<{ success: boolean; error?: string }> {
     try {
       const res = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, action, name, phone }),
+        body: JSON.stringify({ email, action, name, phone, countryCode }),
       });
       const data = (await res.json()) as { success?: boolean; token?: string; email?: string; error?: string };
 
