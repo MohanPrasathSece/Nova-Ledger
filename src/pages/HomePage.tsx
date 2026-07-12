@@ -22,6 +22,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { Dashboard } from "@/components/site/Dashboard";
 import { LogoIcon } from "@/components/site/LogoIcon";
 import { AuthModal, type AuthMode, COUNTRY_PHONE_PATTERNS } from "@/components/site/AuthModal";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import heroCoin from "@/assets/hero-coin.jpg";
 import chartArt from "@/assets/chart-art.jpg";
 import securityArt from "@/assets/security-art.jpg";
@@ -758,16 +759,18 @@ function ContactSection() {
                 </div>
                 <div>
                   <div className="flex gap-2">
-                    <select
-                      value={countryCode}
-                      onChange={(e) => setCountryCode(e.target.value)}
-                      className="w-28 shrink-0 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-sm text-white outline-none placeholder:text-white/30 transition focus:border-gold/60 focus:bg-white/[0.06] cursor-pointer"
-                      style={{ paddingRight: '2rem', backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='rgba(255,255,255,0.4)'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 0.5rem center', backgroundSize: '1.2em' }}
-                    >
-                      {Object.keys(COUNTRY_PHONE_PATTERNS).map((cc) => (
-                        <option key={cc} value={cc}>{cc} {COUNTRY_PHONE_PATTERNS[cc].code}</option>
-                      ))}
-                    </select>
+                    <Select value={countryCode} onValueChange={setCountryCode}>
+                      <SelectTrigger className="w-32 shrink-0 rounded-2xl border border-white/10 bg-white/[0.03] px-4 h-[50px] text-sm text-white transition focus:border-gold/60 focus:bg-white/[0.06] outline-none cursor-pointer">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent position="popper" side="bottom" className="max-h-[300px] border-white/10 bg-ink text-white">
+                        {Object.keys(COUNTRY_PHONE_PATTERNS).map((cc) => (
+                          <SelectItem key={cc} value={cc} className="cursor-pointer focus:bg-white/10 focus:text-gold">
+                            {cc} {COUNTRY_PHONE_PATTERNS[cc].code}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                     <div className="flex-1">
                       <ContactField
                         id="contact-phone"
