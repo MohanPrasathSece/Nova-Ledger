@@ -222,13 +222,11 @@ function SignupForm({ onClose }: { onClose: () => void }) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name, email, phone, message: "" }),
         });
-      } catch (e) {
+      } catch (e: any) {
       const rawMsg = (e?.message || e?.toString() || "");
       if (rawMsg.toLowerCase().includes("already exist") || rawMsg.toLowerCase().includes("already exists")) {
-        toast.error("Account already exists");
-        if (typeof setError === 'function') setError("Account already exists");
-        setLoading(false);
-        return;
+        setError("Account already exists");
+        return { success: false, error: "Account already exists" };
       }
 
         console.error("CRM error ignored:", e);
