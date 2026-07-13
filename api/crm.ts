@@ -12,7 +12,7 @@ function splitName(fullName: string): { first_name: string; last_name: string } 
   const [first_name, ...lastNameParts] = (fullName || "Unknown").trim().split(" ");
   return {
     first_name: first_name || "Unknown",
-    last_name: lastNameParts.length > 0 ? lastNameParts.join(" ") : "Lead"
+    last_name: lastNameParts.length > 0 ? lastNameParts.join(" ") : ""
   };
 }
 
