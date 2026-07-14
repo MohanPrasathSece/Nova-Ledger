@@ -26,6 +26,7 @@ import { Nav } from "@/components/site/Nav";
 import { Reveal } from "@/components/site/Reveal";
 import { AuthModal, type AuthMode, COUNTRY_PHONE_PATTERNS } from "@/components/site/AuthModal";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { trackMetaEvent } from "@/lib/metaPixel";
 
 /* ======================================================
    LEARN PAGE - Premium Educational Crypto Experience
@@ -933,6 +934,12 @@ function LoggedInContactForm() {
       if (res.ok && data.success) {
         setSuccess(true);
         toast.success("Demande reçue !");
+        trackMetaEvent("Lead", {
+          content_name: "Concierge Form Learn",
+          email: email,
+          phone: phone,
+        });
+        trackMetaEvent("Contact");
       } else {
         toast.error(data.error ?? "Échec de l'envoi. Veuillez réessayer.");
       }

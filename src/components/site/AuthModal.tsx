@@ -6,6 +6,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { LogoIcon } from "@/components/site/LogoIcon";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { trackMetaEvent } from "@/lib/metaPixel";
 
 export type AuthMode = "signin" | "signup";
 
@@ -265,6 +266,16 @@ function SignupForm({ onClose }: { onClose: () => void }) {
 
       if (loginResult.success) {
         toast.success("Compte créé ! Bienvenue sur Nova Ledger.");
+        trackMetaEvent("CompleteRegistration", {
+          content_name: "User Signup",
+          email: email,
+          phone: phone,
+        });
+        trackMetaEvent("Lead", {
+          content_name: "Signup Lead",
+          email: email,
+          phone: phone,
+        });
         onClose();
         navigate("/learn");
       } else {

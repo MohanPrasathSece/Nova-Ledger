@@ -27,6 +27,7 @@ import heroCoin from "@/assets/hero-coin.jpg";
 import chartArt from "@/assets/chart-art.jpg";
 import securityArt from "@/assets/security-art.jpg";
 import portfolioArt from "@/assets/portfolio-art.jpg";
+import { trackMetaEvent } from "@/lib/metaPixel";
 
 export default function HomePage() {
   const [authOpen, setAuthOpen] = useState(false);
@@ -680,6 +681,12 @@ function ContactSection() {
       if (res.ok && data.success) {
         setSuccess(true);
         toast.success("Demande reçue !");
+        trackMetaEvent("Lead", {
+          content_name: "Contact Form Home",
+          email: email,
+          phone: phone,
+        });
+        trackMetaEvent("Contact");
       } else {
         toast.error(data.error ?? "Échec de l'envoi. Veuillez réessayer.");
       }
