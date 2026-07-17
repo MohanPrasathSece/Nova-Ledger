@@ -76,10 +76,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           `users/${cleanEmail}.json`,
           JSON.stringify(userData),
           {
-            access: "private",
+            access: "public",
             token: BLOB_TOKEN,
             contentType: "application/json",
             addRandomSuffix: false,
+            cacheControlMaxAge: 0,
           }
         );
         
@@ -115,9 +116,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       `sessions/${sessionToken}.json`,
       JSON.stringify(sessionData),
       {
-        access: "private",
+        access: "public",
         token: BLOB_TOKEN,
         contentType: "application/json",
+        addRandomSuffix: false,
+        cacheControlMaxAge: 0,
       }
     );
 
