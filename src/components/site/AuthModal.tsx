@@ -190,6 +190,8 @@ function LoginForm({ onClose, onNavigateToLearn }: { onClose: () => void; onNavi
 
 /* ---- SIGNUP FORM (name, email, phone → CRM) ---- */
 export const COUNTRY_PHONE_PATTERNS: Record<string, { code: string, name: string, pattern: RegExp, example: string }> = {
+  IE: { code: "+353", name: "IE", pattern: /^8\d{8}$/, example: "87 123 4567" },
+  GB: { code: "+44", name: "GB", pattern: /^(\+44|0044|0)7\d{9}$/, example: "07700 900077" },
   CH: { code: "+41", name: "CH", pattern: /^(\+41|0041|0)?[1-9]\d{8}$/, example: "079 123 45 67" },
   FR: { code: "+33", name: "FR", pattern: /^(\+33|0033|0)[1-9]\d{8}$/, example: "06 12 34 56 78" },
   BE: { code: "+32", name: "BE", pattern: /^(\+32|0032|0)[1-9]\d{7,8}$/, example: "0470 12 34 56" },

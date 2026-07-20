@@ -35,7 +35,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   // Formatting phone
   const DIAL_CODES: Record<string, string> = {
-    CH: "41", FR: "33", BE: "32", CA: "1", US: "1", UK: "44", GB: "44", DE: "49",
+    IE: "353", CH: "41", FR: "33", BE: "32", CA: "1", US: "1", UK: "44", GB: "44", DE: "49",
     ES: "34", IT: "39", NL: "31", SE: "46", AU: "61", IN: "91", AE: "971",
     SG: "65", ZA: "27", BR: "55", MX: "52", JP: "81", CY: "357"
   };
