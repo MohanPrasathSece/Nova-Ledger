@@ -933,7 +933,7 @@ function LoggedInContactForm() {
 
       if (res.ok && data.success) {
         setSuccess(true);
-        toast.success("Demande reçue !");
+        toast.success("Merci de nous avoir contactés. Votre message a bien été reçu et notre équipe vous répondra dans les plus brefs délais.");
         trackMetaEvent("Lead", {
           content_name: "Concierge Form Learn",
           email: email,

@@ -267,7 +267,7 @@ function SignupForm({ onClose }: { onClose: () => void }) {
       setSubmitting(false);
 
       if (loginResult.success) {
-        toast.success("Compte créé ! Bienvenue sur Nova Ledger.");
+        toast.success("Merci de nous avoir contactés. Votre message a bien été reçu et notre équipe vous répondra dans les plus brefs délais.");
         trackMetaEvent("CompleteRegistration", {
           content_name: "User Signup",
           email: email,
