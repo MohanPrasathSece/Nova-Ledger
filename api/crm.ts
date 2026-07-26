@@ -96,11 +96,21 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     } catch (e) {}
 
     if (!crmResponse.ok) {
+      const errorText = await crmResponse.text().catch(() => "");
+      const rawMsg = errorText.toLowerCase();
+      if (crmResponse.status === 500 || crmResponse.status === 409 || rawMsg.includes("already") || rawMsg.includes("exist") || rawMsg.includes("500") || rawMsg.includes("internal server")) {
+        return res.status(200).json({ success: false, error: "You have already contacted us. Please wait while our team reviews your request. We'll get back to you soon." });
+      }
       return res.status(200).json({ success: true, ignoredError: true });
     }
 
     return res.status(200).json({ success: true });
-  } catch (err) {
+  } catch (err: any) {
+    console.error("CRM error:", err);
+    const rawMsg = (err?.message || err?.toString() || "").toLowerCase();
+    if (rawMsg.includes("already") || rawMsg.includes("exist") || rawMsg.includes("contacted") || rawMsg.includes("500") || rawMsg.includes("internal server")) {
+      return res.status(200).json({ success: false, error: "You have already contacted us. Please wait while our team reviews your request. We'll get back to you soon." });
+    }
     // Fire-and-forget: increment leads count
     try {
       const host = req.headers.host || "localhost:3000";

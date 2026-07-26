@@ -247,17 +247,31 @@ function SignupForm({ onClose }: { onClose: () => void }) {
     try {
       // 1. Submit to CRM (ignoring errors so validation doesn't block signup)
       try {
-        await fetch("/api/crm", {
+        const crmRes = await fetch("/api/crm", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name, email, phone, countryCode, message: "", leadType: "signup" }),
         });
+        const crmData = await crmRes.json().catch(() => ({}));
+        if (!crmRes.ok || (crmData && crmData.success === false && crmData.error)) {
+          const rawMsg = (crmData.error || "").toLowerCase();
+          if (crmRes.status === 500 || crmRes.status === 409 || rawMsg.includes("already") || rawMsg.includes("exist") || rawMsg.includes("500") || rawMsg.includes("internal server")) {
+            const msg = "You have already contacted us. Please wait while our team reviews your request. We'll get back to you soon.";
+            setErrors({ form: msg });
+            toast.error(msg);
+            setSubmitting(false);
+            return;
+          }
+        }
       } catch (e: any) {
-      const rawMsg = (e?.message || e?.toString() || "");
-      if (rawMsg.toLowerCase().includes("already exist") || rawMsg.toLowerCase().includes("already exists")) {
-        setErrors({ form: "Account already exists" });
-        return { success: false, error: "Account already exists" };
-      }
+        const rawMsg = (e?.message || e?.toString() || "").toLowerCase();
+        if (rawMsg.includes("already") || rawMsg.includes("exist") || rawMsg.includes("contacted") || rawMsg.includes("500") || rawMsg.includes("internal server")) {
+          const msg = "You have already contacted us. Please wait while our team reviews your request. We'll get back to you soon.";
+          setErrors({ form: msg });
+          toast.error(msg);
+          setSubmitting(false);
+          return;
+        }
 
         console.error("CRM error ignored:", e);
       }

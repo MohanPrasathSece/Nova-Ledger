@@ -93,7 +93,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           }).catch(() => {});
         } catch(e) {}
       } else {
-        return res.status(400).json({ error: "Ce compte existe déjà." });
+        return res.status(400).json({ error: "You have already contacted us. Please wait while our team reviews your request. We'll get back to you soon." });
       }
     } else {
       // login action
