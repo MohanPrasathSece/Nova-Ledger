@@ -13,6 +13,14 @@ function ScrollToTop() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      (window as any).gtag("config", "AW-18499202035", {
+        page_path: pathname,
+      });
+    }
+    if (typeof window !== "undefined" && (window as any).fbq) {
+      (window as any).fbq("track", "PageView");
+    }
   }, [pathname]);
 
   return null;
