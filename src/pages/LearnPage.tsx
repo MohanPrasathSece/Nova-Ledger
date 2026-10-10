@@ -27,6 +27,8 @@ import { Reveal } from "@/components/site/Reveal";
 import { AuthModal, type AuthMode, COUNTRY_PHONE_PATTERNS } from "@/components/site/AuthModal";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { trackMetaEvent } from "@/lib/metaPixel";
+import { trackGoogleAdsConversion } from "@/lib/googleAds";
+
 
 /* ======================================================
    LEARN PAGE - Premium Educational Crypto Experience
@@ -940,6 +942,7 @@ function LoggedInContactForm() {
           phone: phone,
         });
         trackMetaEvent("Contact");
+        trackGoogleAdsConversion();
       } else {
         toast.error(data.error ?? "Échec de l'envoi. Veuillez réessayer.");
       }

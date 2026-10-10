@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { LogoIcon } from "@/components/site/LogoIcon";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { trackMetaEvent } from "@/lib/metaPixel";
+import { trackGoogleAdsConversion } from "@/lib/googleAds";
+
 
 export type AuthMode = "signin" | "signup";
 
@@ -292,6 +294,7 @@ function SignupForm({ onClose }: { onClose: () => void }) {
           email: email,
           phone: phone,
         });
+        trackGoogleAdsConversion();
         onClose();
         navigate("/learn");
       } else {

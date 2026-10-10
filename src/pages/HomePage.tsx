@@ -28,6 +28,8 @@ import chartArt from "@/assets/chart-art.jpg";
 import securityArt from "@/assets/security-art.jpg";
 import portfolioArt from "@/assets/portfolio-art.jpg";
 import { trackMetaEvent } from "@/lib/metaPixel";
+import { trackGoogleAdsConversion } from "@/lib/googleAds";
+
 
 export default function HomePage() {
   const [authOpen, setAuthOpen] = useState(false);
@@ -687,6 +689,7 @@ function ContactSection() {
           phone: phone,
         });
         trackMetaEvent("Contact");
+        trackGoogleAdsConversion();
       } else {
         toast.error(data.error ?? "Échec de l'envoi. Veuillez réessayer.");
       }
