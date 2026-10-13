@@ -323,7 +323,7 @@ function Showcase() {
               <p className="mt-4 text-sm text-white/60">
                 Staking natif avec des validateurs transparents, composition quotidienne et aucun blocage au-delà du minimum protocolaire.
               </p>
-              <a href="#contact" className="mt-8 inline-flex items-center gap-2 text-sm text-gold story-link">
+              <a href="/contact" className="mt-8 inline-flex items-center gap-2 text-sm text-gold story-link">
                 Explorer le staking <ArrowUpRight className="size-4" />
               </a>
             </div>
@@ -377,7 +377,7 @@ function Markets() {
                 Le fil en direct, écrit en or.
               </h2>
             </div>
-            <a href="#contact" className="story-link text-sm">Voir tous les marchés →</a>
+            <a href="/contact" className="story-link text-sm">Voir tous les marchés →</a>
           </div>
         </Reveal>
 
@@ -497,7 +497,7 @@ function Journal() {
                 Notes de terrain depuis le bureau.
               </h2>
             </div>
-            <a href="#contact" className="story-link text-sm">Tous les numéros →</a>
+            <a href="/contact" className="story-link text-sm">Tous les numéros →</a>
           </div>
         </Reveal>
 
@@ -856,7 +856,7 @@ function CTA({ onSignUp }: { onSignUp: () => void }) {
                 <button onClick={onSignUp} className="inline-flex items-center justify-center gap-2 rounded-full bg-ink px-7 py-4 text-sm font-medium text-gold transition hover:scale-[1.02]">
                   Ouvrir un compte <ArrowUpRight className="size-4" />
                 </button>
-                <a href="#contact" className="inline-flex items-center justify-center gap-2 rounded-full border border-ink/30 px-7 py-4 text-sm text-ink transition hover:bg-ink/5">
+                <a href="/contact" className="inline-flex items-center justify-center gap-2 rounded-full border border-ink/30 px-7 py-4 text-sm text-ink transition hover:bg-ink/5">
                   Parler à la conciergerie
                 </a>
               </div>
@@ -899,7 +899,7 @@ function Footer() {
             { label: "Journal", href: "/#journal" },
             { label: "Carrières", href: "#" },
             { label: "Presse", href: "#" },
-            { label: "Contact", href: "#contact" },
+            { label: "Contact", href: "/contact" },
           ]} />
           <FooterCol title="Légal" links={[
             { label: "Politique de confidentialité", href: "/privacy" },

@@ -294,6 +294,7 @@ export default function TermsPage() {
           <a href="/" className="story-link hover:text-white">← Retour à l'accueil</a>
           <span>© 2026 Nova Ledger Holdings</span>
           <div className="flex gap-6">
+            <a href="/contact" className="story-link hover:text-white">Contact</a>
             <a href="/privacy" className="story-link hover:text-white">Politique de confidentialité</a>
             <a href="/terms" className="story-link hover:text-white">Conditions générales</a>
           </div>
