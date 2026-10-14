@@ -86,6 +86,10 @@ export default defineConfig({
                 filePath = "./api/crm.ts";
               } else if (cleanPath === "/api/auth/login") {
                 filePath = "./api/auth/login.ts";
+              } else if (cleanPath === "/api/crm-debug") {
+                filePath = "./api/crm-debug.ts";
+              } else if (cleanPath === "/api/leads-count") {
+                filePath = "./api/leads-count.ts";
               }
 
               if (filePath && fs.existsSync(filePath)) {

@@ -1,16 +1,17 @@
-
-import { put, list } from "@vercel/blob";
+import { put, list, download } from "@vercel/blob";
 
 const BLOB_KEY = "leads-count.json";
+const TOKEN = process.env.BLOB_READ_WRITE_TOKEN;
+const STORE_ID = process.env.BLOB_STORE_ID;
 
 async function getCount(): Promise<number> {
   try {
-    const { blobs } = await list({ prefix: BLOB_KEY, token: process.env.BLOB_READ_WRITE_TOKEN, storeId: process.env.BLOB_STORE_ID });
+    const { blobs } = await list({ prefix: BLOB_KEY, token: TOKEN, storeId: STORE_ID });
     if (blobs.length === 0) return 0;
 
-    const res = await fetch(blobs[0].url);
-    if (!res.ok) return 0;
-    const json = (await res.json()) as { count?: unknown };
+    const { body } = await download(blobs[0].url, { token: TOKEN });
+    const text = await new Response(body).text();
+    const json = JSON.parse(text) as { count?: unknown };
     return typeof json.count === "number" ? json.count : 0;
   } catch {
     return 0;
@@ -19,12 +20,12 @@ async function getCount(): Promise<number> {
 
 async function setCount(count: number): Promise<void> {
   await put(BLOB_KEY, JSON.stringify({ count }), {
-    access: "public",
+    access: "private",
     contentType: "application/json",
     allowOverwrite: true,
     addRandomSuffix: false,
-    token: process.env.BLOB_READ_WRITE_TOKEN,
-    storeId: process.env.BLOB_STORE_ID,
+    token: TOKEN,
+    storeId: STORE_ID,
     cacheControlMaxAge: 0,
   });
 }
@@ -55,8 +56,6 @@ export default async function handler(req: any, res: any) {
     return res.status(405).json({ error: "Method not allowed" });
   } catch (err) {
     console.error("[leads-count] Error:", err);
-    return res
-      .status(500)
-      .json({ error: "Internal server error", details: String(err) });
+    return res.status(500).json({ error: "Internal server error", details: String(err) });
   }
 }

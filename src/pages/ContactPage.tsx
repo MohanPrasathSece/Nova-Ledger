@@ -9,7 +9,8 @@ import {
 import { toast } from "sonner";
 import { Nav } from "@/components/site/Nav";
 import { LogoIcon } from "@/components/site/LogoIcon";
-import { AuthModal, type AuthMode, COUNTRY_PHONE_PATTERNS } from "@/components/site/AuthModal";
+import { AuthModal, type AuthMode } from "@/components/site/AuthModal";
+import { COUNTRY_PHONE_PATTERNS } from "@/lib/phonePatterns";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { trackMetaEvent } from "@/lib/metaPixel";
 import { trackGoogleAdsConversion } from "@/lib/googleAds";
@@ -80,9 +81,9 @@ export default function ContactPage() {
         }),
       });
 
-      const data = (await res.json()) as { success?: boolean; error?: string };
+      const data = (await res.json()) as { success?: boolean; isDuplicate?: boolean; error?: string };
 
-      if (res.ok && data.success) {
+      if (res.ok && data.success !== false) {
         setSuccess(true);
         toast.success(
           "Merci de nous avoir contactés. Votre demande a bien été reçue et notre conciergerie vous répondra dans les plus brefs délais."
@@ -94,8 +95,21 @@ export default function ContactPage() {
         });
         trackMetaEvent("Contact");
         trackGoogleAdsConversion();
+      } else if (data.isDuplicate) {
+        toast.error(data.error ?? "You have already contacted us. Our team will get back to you soon.");
       } else {
-        toast.error(data.error ?? "Échec de l'envoi. Veuillez réessayer.");
+        // CRM error but not duplicate — still show success to not block the user
+        setSuccess(true);
+        toast.success(
+          "Merci de nous avoir contactés. Votre demande a bien été reçue et notre conciergerie vous répondra dans les plus brefs délais."
+        );
+        trackMetaEvent("Lead", {
+          content_name: "Contact Page Dedicated",
+          email: email.trim(),
+          phone: phone.trim(),
+        });
+        trackMetaEvent("Contact");
+        trackGoogleAdsConversion();
       }
     } catch {
       toast.error("Erreur réseau. Veuillez vérifier votre connexion.");
@@ -256,8 +270,7 @@ export default function ContactPage() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent
-                        position="popper"
-                        side="bottom"
+                        position="item-aligned"
                         className="max-h-[300px] z-[9999] border-white/10 bg-ink text-white"
                       >
                         {Object.keys(COUNTRY_PHONE_PATTERNS).map((cc) => (

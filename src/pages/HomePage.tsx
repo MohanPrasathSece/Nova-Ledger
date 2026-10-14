@@ -21,7 +21,8 @@ import { Counter } from "@/components/site/Counter";
 import { Reveal } from "@/components/site/Reveal";
 import { Dashboard } from "@/components/site/Dashboard";
 import { LogoIcon } from "@/components/site/LogoIcon";
-import { AuthModal, type AuthMode, COUNTRY_PHONE_PATTERNS } from "@/components/site/AuthModal";
+import { AuthModal, type AuthMode } from "@/components/site/AuthModal";
+import { COUNTRY_PHONE_PATTERNS } from "@/lib/phonePatterns";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import heroCoin from "@/assets/hero-coin.jpg";
 import chartArt from "@/assets/chart-art.jpg";
@@ -773,7 +774,7 @@ function ContactSection() {
                       <SelectTrigger className="w-32 shrink-0 rounded-2xl border border-white/10 bg-white/[0.03] px-4 h-[50px] text-sm text-white transition focus:border-gold/60 focus:bg-white/[0.06] outline-none cursor-pointer">
                         <SelectValue />
                       </SelectTrigger>
-                      <SelectContent position="popper" side="bottom" className="max-h-[300px] z-[9999] border-white/10 bg-ink text-white">
+                      <SelectContent position="item-aligned" className="max-h-[300px] z-[9999] border-white/10 bg-ink text-white">
                         {Object.keys(COUNTRY_PHONE_PATTERNS).map((cc) => (
                           <SelectItem key={cc} value={cc} className="cursor-pointer focus:bg-white/10 focus:text-gold">
                             {cc} {COUNTRY_PHONE_PATTERNS[cc].code}
