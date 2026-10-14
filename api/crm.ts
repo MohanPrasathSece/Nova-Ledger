@@ -92,10 +92,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const rawMsg = responseText.toLowerCase();
 
-    // Duplicate detection — CRM returns 409
+    // Duplicate detection — CRM returns 409, or lead.duplicate === true in body
     const isDuplicate =
       crmResponse.status === 409 ||
-      rawMsg.includes("duplicate") ||
+      responseData?.lead?.duplicate === true ||
       (rawMsg.includes("already") && rawMsg.includes("exist"));
 
     if (isDuplicate) {
