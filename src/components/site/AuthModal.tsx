@@ -249,20 +249,19 @@ function SignupForm({ onClose, onSuccess }: { onClose: () => void; onSuccess: ()
   // Success screen inside the modal
   if (submitted) {
     return (
-      <div className="mt-8 flex flex-col items-center text-center gap-4">
-        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gold/15">
-          <CheckCircle2 className="size-8 text-gold" />
+      <div className="mt-8 flex flex-col items-center text-center gap-3">
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gold/15">
+          <CheckCircle2 className="size-6 text-gold" />
         </div>
-        <h3 className="font-display text-2xl font-light text-white">Demande reçue !</h3>
-        <p className="text-sm text-white/60 max-w-[280px] leading-relaxed">
-          Merci <span className="text-white font-medium">{name}</span>. Notre équipe vous contactera sous peu au <span className="text-white">{phone}</span>.
+        <p className="text-sm text-white/70">
+          Notre équipe vous contactera sous peu.
         </p>
         <button
           type="button"
           onClick={onSuccess}
-          className="mt-2 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-medium text-ink transition hover:scale-[1.01]"
+          className="mt-1 inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-sm font-medium text-ink transition hover:scale-[1.01]"
         >
-          Continuer vers Nova Ledger
+          Continuer
         </button>
       </div>
     );
