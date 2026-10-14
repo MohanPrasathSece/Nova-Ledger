@@ -253,6 +253,7 @@ function SignupForm({ onClose, onSuccess }: { onClose: () => void; onSuccess: ()
         <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gold/15">
           <CheckCircle2 className="size-6 text-gold" />
         </div>
+        <p className="text-sm text-white font-medium">Thanks for contacting us!</p>
         <p className="text-sm text-white/70">
           Notre équipe vous contactera sous peu.
         </p>
