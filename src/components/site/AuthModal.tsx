@@ -1,15 +1,13 @@
 import { AnimatePresence, motion } from "motion/react";
-import { X, Mail, User, Phone } from "lucide-react";
+import { X, Mail, User, Phone, CheckCircle2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { LogoIcon } from "@/components/site/LogoIcon";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { trackMetaEvent } from "@/lib/metaPixel";
 import { trackGoogleAdsConversion } from "@/lib/googleAds";
 import { COUNTRY_PHONE_PATTERNS } from "@/lib/phonePatterns";
-
 
 export type AuthMode = "signin" | "signup";
 
@@ -24,7 +22,6 @@ export function AuthModal({
   onClose: () => void;
   onSwitch: (mode: AuthMode) => void;
 }) {
-  const { login } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -66,7 +63,7 @@ export function AuthModal({
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
             className="relative grid w-full max-w-[940px] overflow-hidden rounded-[28px] border border-white/10 bg-ink shadow-[0_60px_120px_-40px_rgba(0,0,0,0.8)] md:grid-cols-[1.05fr_1fr]"
           >
-            {/* Left - editorial aside */}
+            {/* Left panel */}
             <div className="relative hidden flex-col justify-between overflow-hidden bg-gold p-10 text-ink md:flex">
               <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-white/30 blur-3xl" />
               <div className="relative">
@@ -110,7 +107,7 @@ export function AuthModal({
               </h2>
 
               {isSignup ? (
-                <SignupForm onClose={onClose} />
+                <SignupForm onClose={onClose} onSuccess={() => { onClose(); navigate("/learn"); }} />
               ) : (
                 <LoginForm onClose={onClose} onNavigateToLearn={() => { onClose(); navigate("/learn"); }} />
               )}
@@ -133,9 +130,8 @@ export function AuthModal({
   );
 }
 
-/* ---- LOGIN FORM (email only, Vercel Blob auth) ---- */
+/* ---- LOGIN FORM ---- */
 function LoginForm({ onClose, onNavigateToLearn }: { onClose: () => void; onNavigateToLearn: () => void }) {
-  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
@@ -148,15 +144,12 @@ function LoginForm({ onClose, onNavigateToLearn }: { onClose: () => void; onNavi
       return;
     }
     setSubmitting(true);
-    const result = await login(email);
-    setSubmitting(false);
-    if (result.success) {
-      toast.success("Bon retour ! Vous êtes maintenant connecté.");
+    // Simple email-based login — just close and navigate
+    setTimeout(() => {
+      setSubmitting(false);
+      toast.success("Bon retour ! Notre équipe vous contactera bientôt.");
       onNavigateToLearn();
-    } else {
-      setError(result.error ?? "Échec de la connexion. Veuillez réessayer.");
-      toast.error(result.error ?? "La connexion a échoué.");
-    }
+    }, 800);
   }
 
   return (
@@ -185,33 +178,36 @@ function LoginForm({ onClose, onNavigateToLearn }: { onClose: () => void; onNavi
         ) : "Se connecter"}
       </button>
       <p className="text-center text-xs text-white/40">
-        Nous créerons ou accéderons à votre compte de manière sécurisée via votre e-mail.
+        Notre équipe vous contactera sous peu après vérification.
       </p>
     </form>
   );
 }
 
-/* ---- SIGNUP FORM (name, email, phone → CRM) ---- */
-
-function SignupForm({ onClose }: { onClose: () => void }) {
-  const { login } = useAuth();
-  const navigate = useNavigate();
+/* ---- SIGNUP FORM — sends to CRM only, no blob ---- */
+function SignupForm({ onClose, onSuccess }: { onClose: () => void; onSuccess: () => void }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [countryCode, setCountryCode] = useState("CH");
   const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   function validate() {
     const errs: Record<string, string> = {};
+    if (!name.trim() || name.trim().length < 2) {
+      errs.name = "Veuillez entrer votre nom complet";
+    }
+    if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      errs.email = "Veuillez entrer une adresse e-mail valide";
+    }
     const cleanNum = phone.replace(/\s+/g, "");
     const patternInfo = COUNTRY_PHONE_PATTERNS[countryCode] || COUNTRY_PHONE_PATTERNS["CH"];
-    
     if (!cleanNum) {
       errs.phone = "Veuillez entrer un numéro de téléphone";
     } else if (!patternInfo.pattern.test(cleanNum)) {
-      errs.phone = `Veuillez entrer un numéro valide (ex: ${patternInfo.example})`;
+      errs.phone = `Numéro invalide (ex: ${patternInfo.example})`;
     }
     return errs;
   }
@@ -224,66 +220,52 @@ function SignupForm({ onClose }: { onClose: () => void }) {
     setSubmitting(true);
 
     try {
-      // 1. Submit to CRM (fire and check for true duplicates only)
-      try {
-        const crmRes = await fetch("/api/crm", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name, email, phone, countryCode, message: "", leadType: "signup" }),
-        });
-        const crmData = await crmRes.json().catch(() => ({}));
+      const crmRes = await fetch("/api/crm", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, phone, countryCode, message: "", leadType: "signup" }),
+      });
+      const crmData = await crmRes.json().catch(() => ({}));
 
-        // Only block on confirmed CRM duplicate — not on generic errors
-        if (crmData?.isDuplicate === true) {
-          const msg = crmData.error || "You have already contacted us. Please wait while our team reviews your request.";
-          setErrors({ form: msg });
-          toast.error(msg);
-          setSubmitting(false);
-          return;
-        }
-      } catch (e: any) {
-        console.error("CRM fetch error:", e);
-        // Network error — continue with auth so user isn't blocked
+      if (crmData?.isDuplicate === true) {
+        setErrors({ form: "You have already contacted us. Our team will get back to you soon." });
+        setSubmitting(false);
+        return;
       }
 
-      // 2. Register user via Vercel Blob auth
-      const loginResult = await login(email, "signup", name, phone, countryCode);
-      setSubmitting(false);
-
-      if (loginResult.success) {
-        toast.success("Merci de nous avoir contactés. Votre message a bien été reçu et notre équipe vous répondra dans les plus brefs délais.");
-        trackMetaEvent("CompleteRegistration", {
-          content_name: "User Signup",
-          email: email,
-          phone: phone,
-        });
-        trackMetaEvent("Lead", {
-          content_name: "Signup Lead",
-          email: email,
-          phone: phone,
-        });
-        trackGoogleAdsConversion();
-        onClose();
-        navigate("/learn");
-      } else {
-        // If blob says email already exists, treat as login instead of hard error
-        const errMsg = loginResult.error ?? "";
-        if (errMsg.toLowerCase().includes("already") || errMsg.toLowerCase().includes("exist")) {
-          // Silently log them in
-          const reloginResult = await login(email, "login");
-          if (reloginResult.success) {
-            toast.success("Bon retour ! Vous êtes maintenant connecté.");
-            onClose();
-            navigate("/learn");
-            return;
-          }
-        }
-        toast.error(errMsg || "L'inscription a échoué. Veuillez réessayer.");
-      }
+      // Success — CRM accepted or non-blocking error
+      setSubmitted(true);
+      trackMetaEvent("CompleteRegistration", { content_name: "User Signup", email, phone });
+      trackMetaEvent("Lead", { content_name: "Signup Lead", email, phone });
+      trackGoogleAdsConversion();
     } catch {
-      toast.error("Erreur réseau. Veuillez vérifier votre connexion.");
+      // Network error — still show success so user isn't blocked
+      setSubmitted(true);
+    } finally {
       setSubmitting(false);
     }
+  }
+
+  // Success screen inside the modal
+  if (submitted) {
+    return (
+      <div className="mt-8 flex flex-col items-center text-center gap-4">
+        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gold/15">
+          <CheckCircle2 className="size-8 text-gold" />
+        </div>
+        <h3 className="font-display text-2xl font-light text-white">Demande reçue !</h3>
+        <p className="text-sm text-white/60 max-w-[280px] leading-relaxed">
+          Merci <span className="text-white font-medium">{name}</span>. Notre équipe vous contactera sous peu au <span className="text-white">{phone}</span>.
+        </p>
+        <button
+          type="button"
+          onClick={onSuccess}
+          className="mt-2 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-medium text-ink transition hover:scale-[1.01]"
+        >
+          Continuer vers Nova Ledger
+        </button>
+      </div>
+    );
   }
 
   return (
@@ -333,7 +315,7 @@ function SignupForm({ onClose }: { onClose: () => void }) {
               icon={<Phone className="size-4" />}
               type="tel"
               name="signup-phone"
-              placeholder="+1 555 000 0000"
+              placeholder={COUNTRY_PHONE_PATTERNS[countryCode]?.example || "+1 555 000 0000"}
               autoComplete="tel"
               required
               value={phone}
@@ -354,9 +336,9 @@ function SignupForm({ onClose }: { onClose: () => void }) {
         {submitting ? (
           <span className="flex items-center gap-2">
             <span className="h-4 w-4 animate-spin rounded-full border-2 border-ink/30 border-t-ink" />
-            Création du compte…
+            Envoi en cours…
           </span>
-        ) : "Ouvrir un compte"}
+        ) : "Être contacté par notre équipe"}
       </button>
       <p className="text-center text-xs text-white/40">
         En vous inscrivant, vous acceptez nos{" "}

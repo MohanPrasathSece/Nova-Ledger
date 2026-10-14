@@ -2,16 +2,17 @@ import type { VercelRequest, VercelResponse } from "@vercel/node";
 
 const CRM_TOKEN = process.env.CRM_TOKEN;
 const CRM_URL = process.env.CRM_URL || "https://inwo.crmcore.me/api/lead_management/api/affiliates";
+const DASHBOARD_URL = process.env.VITE_DASHBOARD_URL || "https://lead-dashboard-orcin.vercel.app/api/increment";
 
 function sanitize(str: string): string {
   return String(str).trim().replace(/[<>"'&]/g, "");
 }
 
 function splitName(fullName: string): { first_name: string; last_name: string } {
-  const [first_name, ...lastNameParts] = (fullName || "Unknown").trim().split(" ");
+  const parts = (fullName || "Unknown").trim().split(" ");
   return {
-    first_name: first_name || "Unknown",
-    last_name: lastNameParts.length > 0 ? lastNameParts.join(" ") : "",
+    first_name: parts[0] || "Unknown",
+    last_name: parts.slice(1).join(" "),
   };
 }
 
@@ -36,7 +37,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   if (!CRM_TOKEN) {
     console.error("[CRM] CRM_TOKEN is not set");
-    return res.status(200).json({ success: true, warning: "CRM not configured" });
+    return res.status(200).json({ success: true });
   }
 
   const { name, email, phone, message, countryCode = "CH", leadType } = req.body ?? {};
@@ -45,7 +46,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const cleanEmail = sanitize(String(email ?? ""));
   const cleanMessage = message ? sanitize(String(message)) : "";
 
-  // Format phone: strip everything except digits, then prepend 00{dialCode}
   let cleanPhone = String(phone || "").replace(/[^0-9+]/g, "");
   const dialCode = DIAL_CODES[(countryCode || "CH").toUpperCase()] || "41";
 
@@ -71,14 +71,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     },
   };
 
-  console.log("[CRM] Submitting lead:", { email: cleanEmail, first_name, last_name, phone: finalPhone, country: countryName });
-
-  // Fire-and-forget leads count increment
-  try {
-    const host = req.headers.host || "localhost:3000";
-    const protocol = host.startsWith("localhost") ? "http" : "https";
-    fetch(`${protocol}://${host}/api/leads-count`, { method: "POST" }).catch(() => {});
-  } catch (_) {}
+  console.log("[CRM] Submitting:", { email: cleanEmail, first_name, phone: finalPhone, country: countryName });
 
   try {
     const crmResponse = await fetch(CRM_URL, {
@@ -99,7 +92,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const rawMsg = responseText.toLowerCase();
 
-    // Detect duplicate lead — CRM returns 409 for duplicates
+    // Duplicate detection — CRM returns 409
     const isDuplicate =
       crmResponse.status === 409 ||
       rawMsg.includes("duplicate") ||
@@ -109,39 +102,40 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(200).json({
         success: false,
         isDuplicate: true,
-        error: "You have already contacted us. Please wait while our team reviews your request. We'll get back to you soon.",
+        error: "You have already contacted us. Our team will get back to you soon.",
       });
     }
 
-    // CRM returned HTTP-level error
-    if (!crmResponse.ok) {
-      console.error("[CRM] Non-ok response:", crmResponse.status, responseText);
-      return res.status(200).json({ success: true, _crmStatus: crmResponse.status });
-    }
+    // Ping dashboard on every non-duplicate submission (fire and forget)
+    fetch(DASHBOARD_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        website: "Nova Ledger",
+        type: leadType || (cleanMessage ? "contact" : "signup"),
+        name: `${first_name} ${last_name}`.trim(),
+        email: cleanEmail,
+      }),
+    }).catch((e) => console.error("[Dashboard] Ping failed:", e));
 
-    // CRM returned 200 but body contains an error (e.g. "Lead is not valid!")
-    if (responseData?.error && !responseData?.lead && !responseData?.id) {
-      console.error("[CRM] Body-level error on 200:", responseData.error);
-      // Don't block the user — log and continue
-      return res.status(200).json({ success: true, _crmBodyError: responseData.error });
-    }
+    console.log("[Dashboard] Pinged:", DASHBOARD_URL);
 
-    // CRM accepted — ping dashboard
-    try {
-      const dashUrl =
-        process.env.VITE_DASHBOARD_URL || "https://lead-dashboard-orcin.vercel.app/api/increment";
-      const type = leadType || (cleanMessage ? "contact" : "signup");
-      fetch(dashUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ website: "Nova Ledger", type, name: `${first_name} ${last_name}`, email: cleanEmail }),
-      }).catch(() => {});
-    } catch (_) {}
-
+    // Always return success to not block the user
     return res.status(200).json({ success: true });
+
   } catch (err: any) {
-    console.error("[CRM] Fetch exception:", err?.message || err);
-    // Don't block the user on a network error to CRM
-    return res.status(200).json({ success: true, _crmError: "network" });
+    console.error("[CRM] Exception:", err?.message || err);
+    // Still ping dashboard so the count is tracked
+    fetch(DASHBOARD_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        website: "Nova Ledger",
+        type: leadType || (cleanMessage ? "contact" : "signup"),
+        name: `${first_name} ${last_name}`.trim(),
+        email: cleanEmail,
+      }),
+    }).catch(() => {});
+    return res.status(200).json({ success: true });
   }
 }
