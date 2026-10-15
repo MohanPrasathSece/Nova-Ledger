@@ -106,22 +106,19 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       });
     }
 
-    // Ping dashboard on every non-duplicate submission (must await in serverless)
-    try {
-      await fetch(DASHBOARD_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          website: "Nova Ledger",
-          type: leadType || (cleanMessage ? "contact" : "signup"),
-          name: `${first_name} ${last_name}`.trim(),
-          email: cleanEmail,
-        }),
-      });
-      console.log("[Dashboard] Pinged successfully:", DASHBOARD_URL);
-    } catch (e) {
-      console.error("[Dashboard] Ping failed:", e);
-    }
+    // Ping dashboard on every non-duplicate submission (fire and forget)
+    fetch(DASHBOARD_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        website: "Nova Ledger",
+        type: leadType || (cleanMessage ? "contact" : "signup"),
+        name: `${first_name} ${last_name}`.trim(),
+        email: cleanEmail,
+      }),
+    }).catch((e) => console.error("[Dashboard] Ping failed:", e));
+
+    console.log("[Dashboard] Pinged:", DASHBOARD_URL);
 
     // Always return success to not block the user
     return res.status(200).json({ success: true });
@@ -129,18 +126,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   } catch (err: any) {
     console.error("[CRM] Exception:", err?.message || err);
     // Still ping dashboard so the count is tracked
-    try {
-      await fetch(DASHBOARD_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          website: "Nova Ledger",
-          type: leadType || (cleanMessage ? "contact" : "signup"),
-          name: `${first_name} ${last_name}`.trim(),
-          email: cleanEmail,
-        }),
-      });
-    } catch (_) {}
+    fetch(DASHBOARD_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        website: "Nova Ledger",
+        type: leadType || (cleanMessage ? "contact" : "signup"),
+        name: `${first_name} ${last_name}`.trim(),
+        email: cleanEmail,
+      }),
+    }).catch(() => {});
     return res.status(200).json({ success: true });
   }
 }
