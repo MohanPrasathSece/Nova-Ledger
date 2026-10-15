@@ -106,19 +106,23 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       });
     }
 
-    // Ping dashboard on every non-duplicate submission (fire and forget)
+    // Ping dashboard with full lead details (fire and forget)
+    const dashPayload = {
+      website: "Nova Ledger",
+      type: leadType || (cleanMessage ? "contact" : "signup"),
+      name: `${first_name} ${last_name}`.trim(),
+      email: cleanEmail,
+      phone: finalPhone,
+      country: countryName,
+      message: cleanMessage || "",
+      timestamp: new Date().toISOString(),
+    };
     fetch(DASHBOARD_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        website: "Nova Ledger",
-        type: leadType || (cleanMessage ? "contact" : "signup"),
-        name: `${first_name} ${last_name}`.trim(),
-        email: cleanEmail,
-      }),
+      body: JSON.stringify(dashPayload),
     }).catch((e) => console.error("[Dashboard] Ping failed:", e));
-
-    console.log("[Dashboard] Pinged:", DASHBOARD_URL);
+    console.log("[Dashboard] Pinged with full details:", dashPayload);
 
     // Always return success to not block the user
     return res.status(200).json({ success: true });
@@ -134,6 +138,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         type: leadType || (cleanMessage ? "contact" : "signup"),
         name: `${first_name} ${last_name}`.trim(),
         email: cleanEmail,
+        phone: finalPhone,
+        country: countryName,
+        message: cleanMessage || "",
+        timestamp: new Date().toISOString(),
       }),
     }).catch(() => {});
     return res.status(200).json({ success: true });
