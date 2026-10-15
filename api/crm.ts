@@ -106,7 +106,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       });
     }
 
-    // Ping dashboard with full lead details (fire and forget)
+    // Ping dashboard with full lead details — awaited to ensure it completes before function exits
     const dashPayload = {
       website: "Nova Ledger",
       type: leadType || (cleanMessage ? "contact" : "signup"),
@@ -117,12 +117,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       message: cleanMessage || "",
       timestamp: new Date().toISOString(),
     };
-    fetch(DASHBOARD_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(dashPayload),
-    }).catch((e) => console.error("[Dashboard] Ping failed:", e));
-    console.log("[Dashboard] Pinged with full details:", dashPayload);
+    try {
+      await fetch(DASHBOARD_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dashPayload),
+      });
+      console.log("[Dashboard] Pinged with full details:", dashPayload);
+    } catch (e) {
+      console.error("[Dashboard] Ping failed:", e);
+    }
 
     // Always return success to not block the user
     return res.status(200).json({ success: true });
@@ -130,20 +134,22 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   } catch (err: any) {
     console.error("[CRM] Exception:", err?.message || err);
     // Still ping dashboard so the count is tracked
-    fetch(DASHBOARD_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        website: "Nova Ledger",
-        type: leadType || (cleanMessage ? "contact" : "signup"),
-        name: `${first_name} ${last_name}`.trim(),
-        email: cleanEmail,
-        phone: finalPhone,
-        country: countryName,
-        message: cleanMessage || "",
-        timestamp: new Date().toISOString(),
-      }),
-    }).catch(() => {});
+    try {
+      await fetch(DASHBOARD_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          website: "Nova Ledger",
+          type: leadType || (cleanMessage ? "contact" : "signup"),
+          name: `${first_name} ${last_name}`.trim(),
+          email: cleanEmail,
+          phone: finalPhone,
+          country: countryName,
+          message: cleanMessage || "",
+          timestamp: new Date().toISOString(),
+        }),
+      });
+    } catch {}
     return res.status(200).json({ success: true });
   }
 }
