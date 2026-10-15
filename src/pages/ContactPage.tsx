@@ -152,15 +152,24 @@ export default function ContactPage() {
             <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-gold/10 blur-3xl" />
 
             <div className="mb-8">
-              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-gold">
-                Formulaire Confidentiel
-              </span>
+              <div className="flex items-center justify-between mb-3">
+                <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-gold">
+                  Formulaire Confidentiel
+                </span>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-red-500/15 border border-red-500/30 px-3 py-1 text-[11px] font-mono uppercase tracking-wider text-red-400">
+                  <span className="h-1.5 w-1.5 rounded-full bg-red-400 animate-pulse" />
+                  Places limitées
+                </span>
+              </div>
               <h1 className="font-display mt-2 text-3xl font-light tracking-tight text-white sm:text-4xl">
                 Contactez-nous
               </h1>
               <p className="mt-2 text-sm text-white/60">
                 Renseignez vos coordonnées afin qu'un conseiller senior prenne contact avec vous sous deux heures.
               </p>
+              <div className="mt-4 rounded-xl border border-gold/20 bg-gold/5 px-4 py-3 text-xs text-white/70 leading-relaxed">
+                ⚡ <span className="text-gold font-medium">Accès restreint :</span> Nous n'acceptons qu'un nombre limité de nouveaux clients par semaine afin de garantir un suivi personnalisé. Les créneaux disponibles se remplissent rapidement.
+              </div>
             </div>
 
             {success ? (
