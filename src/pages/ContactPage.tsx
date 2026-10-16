@@ -14,10 +14,12 @@ import { COUNTRY_PHONE_PATTERNS } from "@/lib/phonePatterns";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { trackMetaEvent } from "@/lib/metaPixel";
 import { trackGoogleAdsConversion } from "@/lib/googleAds";
+import { useSeats, TOTAL_SEATS } from "@/hooks/useSeats";
 
 export default function ContactPage() {
   const [authOpen, setAuthOpen] = useState(false);
   const [authMode, setAuthMode] = useState<AuthMode>("signin");
+  const { seats } = useSeats();
 
   // Form states
   const [name, setName] = useState("");
@@ -158,7 +160,7 @@ export default function ContactPage() {
                 </span>
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-red-500/15 border border-red-500/30 px-3 py-1 text-[11px] font-mono uppercase tracking-wider text-red-400">
                   <span className="h-1.5 w-1.5 rounded-full bg-red-400 animate-pulse" />
-                  Places limitées
+                  {seats}/{TOTAL_SEATS} places réservées
                 </span>
               </div>
               <h1 className="font-display mt-2 text-3xl font-light tracking-tight text-white sm:text-4xl">
@@ -167,8 +169,49 @@ export default function ContactPage() {
               <p className="mt-2 text-sm text-white/60">
                 Renseignez vos coordonnées afin qu'un conseiller senior prenne contact avec vous sous deux heures.
               </p>
-              <div className="mt-4 rounded-xl border border-gold/20 bg-gold/5 px-4 py-3 text-xs text-white/70 leading-relaxed">
-                ⚡ <span className="text-gold font-medium">Accès restreint :</span> Nous n'acceptons qu'un nombre limité de nouveaux clients par semaine afin de garantir un suivi personnalisé. Les créneaux disponibles se remplissent rapidement.
+
+              {/* Dynamic Seat Availability Indicator */}
+              <div className="mt-5 rounded-2xl border border-gold/25 bg-gold/[0.04] p-4 backdrop-blur-sm">
+                <div className="flex items-center justify-between gap-2 mb-2.5">
+                  <div className="flex items-center gap-2">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-gold" />
+                    </span>
+                    <span className="font-mono text-xs uppercase tracking-wider text-white/90">
+                      Disponibilité en temps réel
+                    </span>
+                  </div>
+                  <div className="flex items-baseline gap-1.5">
+                    <span className="font-mono text-sm font-semibold text-gold">
+                      {seats} / {TOTAL_SEATS}
+                    </span>
+                    <span className="text-[11px] font-mono text-white/50">places</span>
+                  </div>
+                </div>
+
+                {/* Progress bar */}
+                <div className="h-2 w-full overflow-hidden rounded-full bg-white/10 p-0.5">
+                  <motion.div
+                    className="h-full rounded-full bg-gradient-to-r from-gold/80 via-amber-400 to-amber-200"
+                    initial={{ width: 0 }}
+                    animate={{ width: `${(seats / TOTAL_SEATS) * 100}%` }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                  />
+                </div>
+
+                <div className="mt-2.5 flex items-center justify-between text-[11px] font-mono">
+                  <span className="text-white/80 font-medium">
+                    {seats} seats filled out of {TOTAL_SEATS}
+                  </span>
+                  <span className="text-amber-300 font-medium">
+                    Plus que {TOTAL_SEATS - seats} places disponibles
+                  </span>
+                </div>
+              </div>
+
+              <div className="mt-3.5 rounded-xl border border-gold/20 bg-gold/5 px-4 py-3 text-xs text-white/70 leading-relaxed">
+                ⚡ <span className="text-gold font-medium">Accès restreint :</span> Nous n'acceptons qu'un nombre limité de nouveaux clients par session afin de garantir un suivi personnalisé. Les créneaux disponibles se remplissent rapidement ({seats} places réservées sur {TOTAL_SEATS}).
               </div>
             </div>
 

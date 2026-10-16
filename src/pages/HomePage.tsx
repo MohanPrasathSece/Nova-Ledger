@@ -30,6 +30,7 @@ import securityArt from "@/assets/security-art.jpg";
 import portfolioArt from "@/assets/portfolio-art.jpg";
 import { trackMetaEvent } from "@/lib/metaPixel";
 import { trackGoogleAdsConversion } from "@/lib/googleAds";
+import { useSeats, TOTAL_SEATS } from "@/hooks/useSeats";
 
 
 export default function HomePage() {
@@ -644,6 +645,7 @@ function Faq() {
 
 /* ---------------- CONTACT SECTION ---------------- */
 function ContactSection() {
+  const { seats } = useSeats();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -707,7 +709,13 @@ function ContactSection() {
         <Reveal>
           <div className="grid gap-16 lg:grid-cols-[1fr_1.2fr] lg:gap-24">
             <div>
-              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-gold">11 - Contact</span>
+              <div className="flex items-center gap-3">
+                <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-gold">11 - Contact</span>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-red-500/15 border border-red-500/30 px-3 py-1 text-[11px] font-mono uppercase tracking-wider text-red-400">
+                  <span className="h-1.5 w-1.5 rounded-full bg-red-400 animate-pulse" />
+                  {seats}/{TOTAL_SEATS} places remplies
+                </span>
+              </div>
               <h2 className="font-display mt-6 text-5xl font-light leading-[1.02] tracking-tight sm:text-6xl">
                 Parlez à notre bureau de conciergerie.
               </h2>
@@ -715,6 +723,47 @@ function ContactSection() {
                 Notre équipe répond en moins de deux heures, tous les jours de l'année.
                 Partagez vos coordonnées et nous vous contacterons.
               </p>
+
+              {/* Dynamic Seat Availability Indicator */}
+              <div className="mt-8 rounded-2xl border border-gold/25 bg-gold/[0.04] p-4 backdrop-blur-sm max-w-md">
+                <div className="flex items-center justify-between gap-2 mb-2.5">
+                  <div className="flex items-center gap-2">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-gold" />
+                    </span>
+                    <span className="font-mono text-xs uppercase tracking-wider text-white/90">
+                      Disponibilité en temps réel
+                    </span>
+                  </div>
+                  <div className="flex items-baseline gap-1.5">
+                    <span className="font-mono text-sm font-semibold text-gold">
+                      {seats} / {TOTAL_SEATS}
+                    </span>
+                    <span className="text-[11px] font-mono text-white/50">places</span>
+                  </div>
+                </div>
+
+                {/* Progress bar */}
+                <div className="h-2 w-full overflow-hidden rounded-full bg-white/10 p-0.5">
+                  <motion.div
+                    className="h-full rounded-full bg-gradient-to-r from-gold/80 via-amber-400 to-amber-200"
+                    initial={{ width: 0 }}
+                    animate={{ width: `${(seats / TOTAL_SEATS) * 100}%` }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                  />
+                </div>
+
+                <div className="mt-2.5 flex items-center justify-between text-[11px] font-mono">
+                  <span className="text-white/80 font-medium">
+                    {seats} seats filled out of {TOTAL_SEATS}
+                  </span>
+                  <span className="text-amber-300 font-medium">
+                    Plus que {TOTAL_SEATS - seats} places disponibles
+                  </span>
+                </div>
+              </div>
+
               <div className="mt-8 space-y-4">
                 {[
                   { icon: Globe2, label: "Disponible dans 142 pays" },
